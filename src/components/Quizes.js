@@ -11,7 +11,7 @@ const testQuiz = {
         ],
         "correctAnswer": "1",
         "messageForCorrectAnswer": "Ayy it looks good",
-        "messageForInorrectAnswer": "sad face",
+        "messageForIncorrectAnswer": "sad face",
         "explanation": "Just checking",
         "point": "1"
         },
@@ -23,7 +23,10 @@ const testQuiz = {
             "asdfasdf",
             "asdfasdfasdfasd"
         ],
-        "correctAnswer": "3"
+        "correctAnswer": "3",
+        "messageForCorrectAnswer": "Ayy it looks good",
+        "messageForIncorrectAnswer": "sad face",
+        "point": "1"
         }
     ]
 }
