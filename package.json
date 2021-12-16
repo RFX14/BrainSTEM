@@ -13,6 +13,7 @@
     "react-quiz-component": "^0.3.9",
     "react-router-dom": "^6.1.1",
     "react-scripts": "5.0.0",
+    "serialport": "^9.2.8",
     "web-vitals": "^2.1.2"
   },
   "scripts": {
@@ -22,7 +23,8 @@
     "build-electron": "mkdir build/src && cp -r electron/. build/electron && cp -r src/shared/. build/src/shared",
     "package": "electron-builder build --mac --win -c.extraMetadata.main=build/electron/main.js --publish never",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "install": "electron-rebuild"
   },
   "build": {
     "files": [
@@ -55,6 +57,7 @@
   },
   "devDependencies": {
     "electron": "^16.0.4",
-    "electron-builder": "^22.14.5"
+    "electron-builder": "^22.14.5",
+    "electron-rebuild": "^3.2.5"
   }
 }
