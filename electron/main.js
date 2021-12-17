@@ -28,12 +28,12 @@ function createWindow () {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(createWindow)
 
-function listSerial() {
+function serialComm() {
   if(win) {
     SerialPort.list()
       .then((ports) => {
-        console.log(ports[0].path);
-        win.webContents.send('ports', ports[0].path);
+        console.log(ports);
+        win.webContents.send('ports', ports);
       })
   } else {
     console.log('app not ready yet')
@@ -42,7 +42,7 @@ function listSerial() {
 
 setTimeout(function listPorts() {
   setTimeout(listPorts, 5000);
-  listSerial();
+  serialComm();
 }, 5000);
 
 // Quit when all windows are closed
