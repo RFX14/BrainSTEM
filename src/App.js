@@ -8,7 +8,7 @@ import QuizPage from './components/QuizPage';
 function App() {
   return (
     <Router>
-    <Header />
+      <Header />
       <Routes>
         <Route path='/' element={
           <div className="container">
