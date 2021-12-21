@@ -3,13 +3,12 @@ import ReactDropdown from 'react-dropdown'
 import './lib/dropdownStyles.css'
 import {useState, useEffect} from 'react'
 
-const { ipcRenderer } = window.require('electron')
-
 const Header = () => {
     const [ports, updatePorts] = useState([])
+    const { ipcRenderer } = window.require('electron')
 
     ipcRenderer.on('ports', (event, msg) => {
-        if(msg) {
+        if(msg && ports.length === 0) {
             var newArray = []
             for(const [key, value] of Object.entries(msg)) {
                 console.log(key);
@@ -17,6 +16,8 @@ const Header = () => {
             }
 
             updatePorts(newArray);
+        } else {
+            console.log(ports.length)
         }
     })
 
