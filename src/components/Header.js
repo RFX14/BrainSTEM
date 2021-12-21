@@ -5,6 +5,7 @@ import {useState, useEffect} from 'react'
 
 const Header = () => {
     const [ports, updatePorts] = useState([])
+    const [selectedPort, updateSelection] = useState({value: 'zero', label: 'zero'})
     const { ipcRenderer } = window.require('electron')
 
     ipcRenderer.on('ports', (event, msg) => {
@@ -17,7 +18,7 @@ const Header = () => {
 
             updatePorts(newArray);
         } else {
-            console.log(ports.length)
+            console.log("Selected Port: ", selectedPort.value)
         }
     })
 
@@ -32,6 +33,7 @@ const Header = () => {
                 options={ports}
                 value={ports[0]}
                 placeholder={"Select a port"}
+                onChange={updateSelection}
             />
         </div>
     )
