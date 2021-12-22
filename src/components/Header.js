@@ -18,7 +18,7 @@ const Header = () => {
 
             updatePorts(newArray);
         } else {
-            console.log("Selected Port: ", selectedPort.value)
+            ipcRenderer.send('ports', selectedPort);
         }
     })
 

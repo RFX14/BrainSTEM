@@ -48,10 +48,14 @@ function serialComm() {
           win.webContents.send('ports', ports);
         });
       isFirstRun = false;
+    } else {
+      win.webContents.on('ports', (event, msg) {
+        selectedPath = msg;
+      });
+      
       port = new SerialPort(selectedPath, {
         baudRate: 9600
       });
-    } else {
     }
   } else {
     console.log('app not ready yet')
