@@ -29,13 +29,30 @@ function createWindow () {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(createWindow)
 
+// Quit when all windows are closed
+app.on('window-all-closed', () => {
+    app.quit()
+});
+
+// In this file you can include the rest of your app's specific main process
+// code. You can also put them in separate files and require them here.
+var isFirstRun = true;
+var port;
+var selectedPath;
 function serialComm() {
   if(win) {
-    SerialPort.list()
-      .then((ports) => {
-        console.log(ports);
-        win.webContents.send('ports', ports);
-      })
+    if(isFirstRun) {
+      SerialPort.list()
+        .then((ports) => {
+          console.log(ports);
+          win.webContents.send('ports', ports);
+        });
+      isFirstRun = false;
+      port = new SerialPort(selectedPath, {
+        baudRate: 9600
+      });
+    } else {
+    }
   } else {
     console.log('app not ready yet')
   }
@@ -45,11 +62,3 @@ setTimeout(function listPorts() {
   setTimeout(listPorts, 5000);
   serialComm();
 }, 5000);
-
-// Quit when all windows are closed
-app.on('window-all-closed', () => {
-    app.quit()
-})
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.

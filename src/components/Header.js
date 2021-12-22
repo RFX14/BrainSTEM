@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import ReactDropdown from 'react-dropdown'
 import './lib/dropdownStyles.css'
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 
 const Header = () => {
     const [ports, updatePorts] = useState([])
