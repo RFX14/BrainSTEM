@@ -13,17 +13,16 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  if(Serial.available() > 0) {
-    int incomingByte = Serial.read();
-    if(incomingByte == MAIN) {
-      readMain();    
-    } else if(incomingByte == THERMO) {
-      readThermo();
-    } else if(incomingByte == -1) {
-      Serial.println("Empty Byte");
-    } else {
-      Serial.println("Dunno, what this is");
-    }
+  int incomingByte = Serial.read();
+  Serial.println("Howdy this is arduino");
+  if(incomingByte == MAIN) {
+    readMain();    
+  } else if(incomingByte == THERMO) {
+    readThermo();
+  } else if(incomingByte == -1) {
+    Serial.println("Empty Byte");
+  } else {
+    Serial.println("Dunno, what this is");
   }
 }
 

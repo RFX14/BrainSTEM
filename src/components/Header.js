@@ -10,15 +10,17 @@ const Header = () => {
 
     ipcRenderer.on('ports', (event, msg) => {
         if(msg && ports.length === 0) {
-            var newArray = []
+            var newArray = [];
+            const oldPort = selectedPort.value;
             for(const [key, value] of Object.entries(msg)) {
-                console.log(key);
+                //console.log(key);
                 newArray.push(value.path);
             }
-
+            
+            ipcRenderer.send('ports', selectedPort.value);
             updatePorts(newArray);
         } else {
-            ipcRenderer.send('ports', selectedPort);
+            console.log("Not ready");
         }
     })
 

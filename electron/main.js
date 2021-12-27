@@ -38,7 +38,7 @@ app.on('window-all-closed', () => {
 // code. You can also put them in separate files and require them here.
 var isFirstRun = true;
 var port;
-var selectedPath;
+var selectedPath = "null_port";
 function serialComm() {
   if(win) {
     if(isFirstRun) {
@@ -49,13 +49,20 @@ function serialComm() {
         });
       isFirstRun = false;
     } else {
-      win.webContents.on('ports', (event, msg) {
+      win.webContents.on('ports', (event, msg) => {
         selectedPath = msg;
       });
-      
-      port = new SerialPort(selectedPath, {
-        baudRate: 9600
-      });
+      console.log(selectedPath);
+
+      if(selectedPath != "null_port") {
+        port = new SerialPort(selectedPath, {
+          baudRate: 9600
+        });
+
+        port.on('readable', () => {
+          console.log("Message From Board: ", port.read());
+        });
+      }
     }
   } else {
     console.log('app not ready yet')
