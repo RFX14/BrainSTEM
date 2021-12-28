@@ -1,13 +1,28 @@
-import { Link } from 'react-router-dom'
-import ReactDropdown from 'react-dropdown'
-import './lib/dropdownStyles.css'
-import {useState} from 'react'
+import { Link } from 'react-router-dom';
+import ReactDropdown from 'react-dropdown';
+import './lib/dropdownStyles.css';
+import { useState, useLayoutEffect } from 'react';
+const { ipcRenderer } = window.require('electron');
 
 const Header = () => {
-    const [ports, updatePorts] = useState([])
-    const [selectedPort, updateSelection] = useState({value: 'zero', label: 'zero'})
-    const { ipcRenderer } = window.require('electron')
+    const [ports, updatePorts] = useState([]);
+    const [selectedPort, updateSelection] = useState({value: 'zero', label: 'zero'});
 
+    ipcRenderer.on('isReady', (event, args) => {
+        console.log(args);
+        if(args) {
+            updatePorts(getAvailablePorts);
+        }
+    });
+
+    function getAvailablePorts() {
+        var resp = ipcRenderer.sendSync('getPorts');
+        console.log("Response: ", resp);
+        
+        return resp;
+    }
+
+/*
     ipcRenderer.on('ports', (event, msg) => {
         if(msg && ports.length === 0) {
             var newArray = [];
@@ -16,13 +31,14 @@ const Header = () => {
                 //console.log(key);
                 newArray.push(value.path);
             }
-            
-            ipcRenderer.send('ports', selectedPort.value);
+
+            ipcRenderer.sendSync('portName', selectedPort.value);
             updatePorts(newArray);
         } else {
             console.log("Not ready");
         }
     })
+*/
 
     return (
         <div className='container2'>

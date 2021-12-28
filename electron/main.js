@@ -21,7 +21,7 @@ function createWindow () {
   win.loadURL('http://localhost:3000');
 
   // Open the DevTools.
-  win.webContents.openDevTools()
+  win.webContents.openDevTools();
 }
 
 // This method will be called when Electron has finished
@@ -39,6 +39,29 @@ app.on('window-all-closed', () => {
 var isFirstRun = true;
 var port;
 var selectedPath = "null_port";
+
+ipcMain.on('getPorts', (event, args) => {
+    SerialPort.list()
+      .then((ports) => {
+        var newArray = [];
+        for(const [key, value] of Object.entries(ports)) {
+            console.log(value.path);
+            newArray.push(value.path);
+        }
+        event.returnValue = newArray;
+      });
+});
+
+
+function isReady() {
+  win.webContents.send('isReady', true);
+}
+
+setTimeout(() => {
+    isReady();
+  }, 10000);
+
+/*
 function serialComm() {
   if(win) {
     if(isFirstRun) {
@@ -49,7 +72,7 @@ function serialComm() {
         });
       isFirstRun = false;
     } else {
-      win.webContents.on('ports', (event, msg) => {
+      win.webContents.on('portName', (event, msg) => {
         selectedPath = msg;
       });
       console.log(selectedPath);
@@ -73,3 +96,4 @@ setTimeout(function listPorts() {
   setTimeout(listPorts, 5000);
   serialComm();
 }, 5000);
+*/
