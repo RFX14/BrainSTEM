@@ -11,11 +11,14 @@ const TestSerial = ({mode}) => {
 
     //Update Mode
     useEffect(() => {
-        ipcRenderer.send('updateMode', selectedMode);
+        ipcRenderer.sendSync('updateMode', selectedMode);
     }, [selectedMode]);
 
     //Read Data
-
+    ipcRenderer.send('requestData', 'gimmie data');
+    ipcRenderer.on('readData', (event, args) => {
+        updateData(args);
+    });
 
     return (
         <div className='container2'>

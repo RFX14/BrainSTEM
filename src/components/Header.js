@@ -25,23 +25,6 @@ const Header = () => {
     useEffect(() => {
         ipcRenderer.send('updateSelectedPort', selectedPort.value);
     }, [selectedPort])
-/*
-    ipcRenderer.on('ports', (event, msg) => {
-        if(msg && ports.length === 0) {
-            var newArray = [];
-            const oldPort = selectedPort.value;
-            for(const [key, value] of Object.entries(msg)) {
-                //console.log(key);
-                newArray.push(value.path);
-            }
-
-            ipcRenderer.sendSync('portName', selectedPort.value);
-            updatePorts(newArray);
-        } else {
-            console.log("Not ready");
-        }
-    })
-*/
 
     return (
         <div className='container2'>

@@ -18,8 +18,9 @@ function App() {
             
             <br/>
 
-            <Button text='Test Serial' link='/testserial'/>
+            <Button text='Test Serial' link='/testserial' color='red'/>
 
+            <br/>
             <br/>
 
             <Button text='Thermistor' link='/thermistor'/>

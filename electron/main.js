@@ -1,5 +1,7 @@
-const { app, BrowserWindow, ipcMain, ipcRenderer } = require('electron')
-const SerialPort = require('serialport')
+const { app, BrowserWindow, ipcMain, ipcRenderer } = require('electron');
+const SerialPort = require('serialport');
+const { Readline } = require('serialport/lib/parsers');
+const Readine = SerialPort.parsers.Readline;
 
 let win;
 
@@ -21,7 +23,7 @@ function createWindow () {
   win.loadURL('http://localhost:3000');
 
   // Open the DevTools.
-  win.webContents.openDevTools();
+  //win.webContents.openDevTools();
 }
 
 // This method will be called when Electron has finished
@@ -65,71 +67,25 @@ ipcMain.on('updateSelectedPort', (event, args) => {
   console.log(selectedPort);
 });
 
-// Opens port to device
-var port;
-function openCommPort() {
-  if(selectedPort != undefined && selectedPort != 'null_port') {
-    port = new SerialPort(selectedPort, {
-      baudRate: 9600
-    });
-  }
-}
-
 // Updates mode that device operates at
 var currentMode = 0;
 ipcMain.on('updateMode', (event, args) => {
   currentMode = args;
-  openCommPort();
-  //readData();
+  //openCommPort();
 });
 
-function readData() {
-  
-}
-
-/*
-port.open((err) => {
-  if(err) {
-    return console.log('Error opening port: ', err.message);
-  }
-
-  console.log('Port Opened!');
+// Sends serial data to react
+var port = new SerialPort('/dev/tty.usbserial-AB0LR1PF', {
+  baudRate: 9600,
+  parser: new Readline('\r\n')
 });
-*/
 
-/*
-function serialComm() {
-  if(win) {
-    if(isFirstRun) {
-      SerialPort.list()
-        .then((ports) => {
-          console.log(ports);
-          win.webContents.send('ports', ports);
-        });
-      isFirstRun = false;
-    } else {
-      win.webContents.on('portName', (event, msg) => {
-        selectedPath = msg;
-      });
-      console.log(selectedPath);
+var data;
+ipcMain.on('requestData', (event, args) => {
+  event.reply('readData', data);
+});
 
-      if(selectedPath != "null_port") {
-        port = new SerialPort(selectedPath, {
-          baudRate: 9600
-        });
-
-        port.on('readable', () => {
-          console.log("Message From Board: ", port.read());
-        });
-      }
-    }
-  } else {
-    console.log('app not ready yet')
-  }
-}
-
-setTimeout(function listPorts() {
-  setTimeout(listPorts, 5000);
-  serialComm();
-}, 5000);
-*/
+// Reads data from serial port
+port.on('readable', () => {
+  data = port.read().toString();
+});
