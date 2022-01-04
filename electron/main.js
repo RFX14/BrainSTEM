@@ -5,6 +5,13 @@ const Readine = SerialPort.parsers.Readline;
 
 let win;
 
+/* 
+  TODO: 
+    - Fix parser issues
+    - Get mode selection working with arduino
+    - Decide whether to keep comm selection
+*/
+
 function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({
@@ -71,15 +78,15 @@ ipcMain.on('updateSelectedPort', (event, args) => {
 var currentMode = 0;
 ipcMain.on('updateMode', (event, args) => {
   currentMode = args;
-  //openCommPort();
 });
 
-// Sends serial data to react
+//Sets up serial port (work in progress)
 var port = new SerialPort('/dev/tty.usbserial-AB0LR1PF', {
   baudRate: 9600,
   parser: new Readline('\r\n')
 });
 
+// Sends serial data to react
 var data;
 ipcMain.on('requestData', (event, args) => {
   event.reply('readData', data);
