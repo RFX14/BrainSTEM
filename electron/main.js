@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
+const { app, BrowserWindow, ipcMain, ipcRenderer } = require('electron')
 const SerialPort = require('serialport')
 
 let win;
@@ -14,8 +14,8 @@ function createWindow () {
       enableRemoteModule: true,
       contextIsolation: false,
     }
-  })
-  win.setMenu(null)
+  });
+  win.setMenu(null);
 
   //load the index.html from a url
   win.loadURL('http://localhost:3000');
@@ -27,18 +27,24 @@ function createWindow () {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.whenReady().then(createWindow)
+app.whenReady().then(createWindow);
 
 // Quit when all windows are closed
 app.on('window-all-closed', () => {
-    app.quit()
+    app.quit();
 });
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-var isFirstRun = true;
-var port;
-var selectedPath = "null_port";
+
+// Send available ports to react
+function isReady() {
+  win.webContents.send('isReady', true);
+}
+
+setTimeout(() => {
+    isReady();
+}, 2000);
 
 ipcMain.on('getPorts', (event, args) => {
     SerialPort.list()
@@ -52,14 +58,44 @@ ipcMain.on('getPorts', (event, args) => {
       });
 });
 
+// Update the selected port
+var selectedPort = 'null_port';
+ipcMain.on('updateSelectedPort', (event, args) => {
+  selectedPort = args;
+  console.log(selectedPort);
+});
 
-function isReady() {
-  win.webContents.send('isReady', true);
+// Opens port to device
+var port;
+function openCommPort() {
+  if(selectedPort != undefined && selectedPort != 'null_port') {
+    port = new SerialPort(selectedPort, {
+      baudRate: 9600
+    });
+  }
 }
 
-setTimeout(() => {
-    isReady();
-  }, 10000);
+// Updates mode that device operates at
+var currentMode = 0;
+ipcMain.on('updateMode', (event, args) => {
+  currentMode = args;
+  openCommPort();
+  //readData();
+});
+
+function readData() {
+  
+}
+
+/*
+port.open((err) => {
+  if(err) {
+    return console.log('Error opening port: ', err.message);
+  }
+
+  console.log('Port Opened!');
+});
+*/
 
 /*
 function serialComm() {

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import ReactDropdown from 'react-dropdown';
 import './lib/dropdownStyles.css';
-import { useState, useLayoutEffect } from 'react';
+import { useState, useEffect } from 'react';
 const { ipcRenderer } = window.require('electron');
 
 const Header = () => {
@@ -22,6 +22,9 @@ const Header = () => {
         return resp;
     }
 
+    useEffect(() => {
+        ipcRenderer.send('updateSelectedPort', selectedPort.value);
+    }, [selectedPort])
 /*
     ipcRenderer.on('ports', (event, msg) => {
         if(msg && ports.length === 0) {
