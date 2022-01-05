@@ -1,15 +1,14 @@
 const { app, BrowserWindow, ipcMain, ipcRenderer } = require('electron');
 const SerialPort = require('serialport');
-const { Readline } = require('serialport/lib/parsers');
-const Readine = SerialPort.parsers.Readline;
+const { Readline, Delimiter } = require('serialport/lib/parsers');
 
 let win;
 
 /* 
   TODO: 
-    - Fix parser issues
-    - Get mode selection working with arduino
-    - Decide whether to keep comm selection
+    [x] Fix parser issues
+    [] Get mode selection working with arduino
+    [] Decide whether to keep comm selection
 */
 
 function createWindow () {
@@ -83,8 +82,8 @@ ipcMain.on('updateMode', (event, args) => {
 //Sets up serial port (work in progress)
 var port = new SerialPort('/dev/tty.usbserial-AB0LR1PF', {
   baudRate: 9600,
-  parser: new Readline('\r\n')
 });
+const parser = port.pipe(new Readline({ Delimiter: '\r\n' }))
 
 // Sends serial data to react
 var data;
@@ -93,6 +92,6 @@ ipcMain.on('requestData', (event, args) => {
 });
 
 // Reads data from serial port
-port.on('readable', () => {
-  data = port.read().toString();
+parser.on('data', (newData) => {
+  data = newData.toString();
 });

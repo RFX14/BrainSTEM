@@ -2,6 +2,7 @@
 #define RESISTOR 10000
 
 const int MAIN = 0, THERMO = 1;
+int count = 0;
 
 void readMain();
 void readThermo();
@@ -14,23 +15,24 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   int incomingByte = Serial.read();
-  Serial.write("Howdy\n");
+  Serial.println(count);
   if(incomingByte == MAIN) {
     readMain();    
   } else if(incomingByte == THERMO) {
     readThermo();
   }
+  count = (count + 1) % 999999;
 }
 
 void readMain() {
   while(Serial.read() == MAIN) {
-    Serial.write("This is main!\n"); 
+    Serial.println("This is main!"); 
   }
 }
 
 void readThermo() {
   float reading;
   while(Serial.read() == MAIN) {
-    Serial.write("This is thermo!\n");
+    Serial.println("This is thermo!");
   }
 }
