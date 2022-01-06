@@ -5,15 +5,22 @@ import Button from './components/Button';
 import SensorHome from './components/SensorHome';
 import QuizPage from './components/QuizPage';
 
+import TestSerial from './components/TestSerial';
+
 function App() {
   return (
     <Router>
-    <Header />
+      <Header />
       <Routes>
         <Route path='/' element={
           <div className="container">
             <h2>Available Sensors</h2> 
             
+            <br/>
+
+            <Button text='Test Serial' link='/testserial' color='red'/>
+
+            <br/>
             <br/>
 
             <Button text='Thermistor' link='/thermistor'/>
@@ -23,6 +30,8 @@ function App() {
             <Button text='Light Sensor' link='/light'/>
           </div>
         }/>
+
+        <Route path='testserial' element={<TestSerial/>} />
 
         <Route path='/thermistor' element={<SensorHome title='Thermistor' quizLink='/thermistor/prequiz'/>} />
         <Route path='/microphone' element={<SensorHome title='Microphone'/>} />

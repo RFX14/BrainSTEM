@@ -1,32 +1,97 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain, ipcRenderer } = require('electron');
+const SerialPort = require('serialport');
+const { Readline, Delimiter } = require('serialport/lib/parsers');
+
+let win;
+
+/* 
+  TODO: 
+    [x] Fix parser issues
+    [] Get mode selection working with arduino
+    [] Decide whether to keep comm selection
+*/
 
 function createWindow () {
   // Create the browser window.
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 800,
-    height: 600,
+    height: 650,
+    resizable: false,
     webPreferences: {
       nodeIntegration: true,
+      enableRemoteModule: true,
+      contextIsolation: false,
     }
-  })
-  win.setMenu(null)
+  });
+  win.setMenu(null);
 
   //load the index.html from a url
   win.loadURL('http://localhost:3000');
 
   // Open the DevTools.
-  //win.webContents.openDevTools()
+  //win.webContents.openDevTools();
 }
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.whenReady().then(createWindow)
+app.whenReady().then(createWindow);
 
 // Quit when all windows are closed
 app.on('window-all-closed', () => {
-    app.quit()
-})
+    app.quit();
+});
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+// Send available ports to react
+function isReady() {
+  win.webContents.send('isReady', true);
+}
+
+setTimeout(() => {
+    isReady();
+}, 2000);
+
+ipcMain.on('getPorts', (event, args) => {
+    SerialPort.list()
+      .then((ports) => {
+        var newArray = [];
+        for(const [key, value] of Object.entries(ports)) {
+            console.log(value.path);
+            newArray.push(value.path);
+        }
+        event.returnValue = newArray;
+      });
+});
+
+// Update the selected port
+var selectedPort = 'null_port';
+ipcMain.on('updateSelectedPort', (event, args) => {
+  selectedPort = args;
+  console.log(selectedPort);
+});
+
+// Updates mode that device operates at
+var currentMode = 0;
+ipcMain.on('updateMode', (event, args) => {
+  currentMode = args;
+});
+
+//Sets up serial port (work in progress)
+var port = new SerialPort('/dev/tty.usbserial-AB0LR1PF', {
+  baudRate: 9600,
+});
+const parser = port.pipe(new Readline({ Delimiter: '\r\n' }))
+
+// Sends serial data to react
+var data;
+ipcMain.on('requestData', (event, args) => {
+  event.reply('readData', data);
+});
+
+// Reads data from serial port
+parser.on('data', (newData) => {
+  data = newData.toString();
+});
