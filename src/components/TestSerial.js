@@ -4,6 +4,11 @@ import './lib/dropdownStyles.css';
 import { useState, useEffect } from 'react';
 const { ipcRenderer } = window.require('electron');
 
+/*
+    TODO: 
+        [] Figure out ChartJS
+ */
+
 const TestSerial = ({mode}) => {
     const serialModes = [0, 1, 2];
     const [selectedMode, updateSelection] = useState(-1);
