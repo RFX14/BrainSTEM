@@ -13,11 +13,6 @@ const RealtimeLineChart = ({dataList, range}) => {
                     speed: 1000
                 }
             },
-            tooltip: {
-                x: {
-                    format: 'yyyy/MM/dd HH:mm:ss.f'
-                }
-            },
             xaxis: {
                 type: 'datatime',
                 range: range
@@ -35,7 +30,7 @@ const RealtimeLineChart = ({dataList, range}) => {
             },
             stroke: {
                 curve: 'smooth'
-            }
+            },
         },
     };
     

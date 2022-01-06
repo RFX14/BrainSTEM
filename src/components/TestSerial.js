@@ -17,7 +17,7 @@ const TestSerial = () => {
     //const [selectedMode, updateSelection] = useState(-1);
     //const [data, updateData] = useState('no-data');
 
-    const nameList = ['a', 'b', 'c'];
+    const nameList = ['a'];
     const defaultDataList = nameList.map(name => ({
         name: name,
         data: []
