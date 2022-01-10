@@ -29,7 +29,7 @@ function createWindow () {
   win.loadURL('http://localhost:3000');
 
   // Open the DevTools.
-  //win.webContents.openDevTools();
+  win.webContents.openDevTools();
 }
 
 // This method will be called when Electron has finished
@@ -85,11 +85,18 @@ var port = new SerialPort('/dev/tty.usbserial-AB0LR1PF', {
 });
 const parser = port.pipe(new Readline({ Delimiter: '\r\n' }))
 
+/* 
 // Sends serial data to react
 var data;
 ipcMain.on('requestData', (event, args) => {
   event.reply('readData', data);
 });
+*/
+
+var data = 0;
+ipcMain.on('readData', (event, args) => {
+  event.returnValue = data;
+})
 
 // Reads data from serial port
 parser.on('data', (newData) => {
