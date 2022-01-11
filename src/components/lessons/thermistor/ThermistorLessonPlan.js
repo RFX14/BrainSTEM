@@ -29,7 +29,7 @@ const ThermistorLessonPlan = () => {
 
       <img src={image3}></img>
       <img src={image5}></img>
-      <img src={image2}></img>
+      <img src={image2} width="500"></img>
 
       <br/>
 
