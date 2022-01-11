@@ -6,6 +6,8 @@ import SensorHome from './components/SensorHome';
 import QuizPage from './components/QuizPage';
 
 import TestSerial from './components/TestSerial';
+import Lesson from './components/Lesson';
+import ThermistorLessonPlan from './components/lessons/thermistor/ThermistorLessonPlan';
 
 function App() {
   return (
@@ -33,13 +35,15 @@ function App() {
 
         <Route path='testserial' element={<TestSerial/>} />
 
-        <Route path='/thermistor' element={<SensorHome title='Thermistor' quizLink='/thermistor/prequiz'/>} />
+        <Route path='/thermistor' element={<SensorHome title='Thermistor' quizLink='/thermistor/prequiz' beginnerLink='/thermistor/blesson'/>} />
         <Route path='/microphone' element={<SensorHome title='Microphone'/>} />
         <Route path='/motion' element={<SensorHome title='Motion Sensor'/>} />
         <Route path='/strain' element={<SensorHome title='Strain Gauge'/>} />
         <Route path='/light' element={<SensorHome title='Light Sensor'/>} />
 
         <Route path='/thermistor/prequiz' element={<QuizPage quizName='testQuiz' />} />
+
+        <Route path='/thermistor/blesson' element={<ThermistorLessonPlan />} />
       </Routes>
     </Router>
   );

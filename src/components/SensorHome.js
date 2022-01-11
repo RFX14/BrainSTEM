@@ -1,7 +1,7 @@
 import Button from "./Button"
 import PropTypes from 'prop-types'
 
-const SensorHome = ({title, quizLink}) => {
+const SensorHome = ({title, quizLink, beginnerLink}) => {
     return (
         <div className="container">
             <h2>{title}</h2>
@@ -9,7 +9,7 @@ const SensorHome = ({title, quizLink}) => {
             <br/>
 
             <Button text="Placement Quiz" link={quizLink}/>
-            <Button text="Beginner Lessons" />
+            <Button text="Beginner Lessons" link={beginnerLink}/>
             <Button text="Advanced Lessons" />
         </div>
     )
