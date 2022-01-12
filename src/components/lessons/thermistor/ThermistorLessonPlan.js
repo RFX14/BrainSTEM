@@ -4,6 +4,7 @@ import image2 from './images/image2.gif'
 import image3 from './images/image3.png'
 import image4 from './images/image4.gif'
 import image5 from './images/image5.png'
+import Button from '../../Button';
 
 const ThermistorLessonPlan = () => {
   return (
@@ -36,6 +37,10 @@ const ThermistorLessonPlan = () => {
 
       <p>So what does all this have to do with the thermometer? Thermometers have a type of resistor (the hose squeezer)  in them called the thermistor. Thermistors are different from regular resistors because their resistance is based on how hot or cold it is. So, when it is hotter outside, it squeezes way harder than if it was cold out. We can use a thermistor to then measure the temperature by simply measuring the voltage (or the pressure of the water) after it’s squeezed by the thermistor!</p>
       
+      <br/>
+      <br/>
+      
+      <Button text='DEMO' link='/thermistor/demo1' />
     </div>
   );
 }
