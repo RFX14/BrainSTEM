@@ -4,6 +4,7 @@ import image2 from './images/image2.gif'
 import image3 from './images/image3.png'
 import image4 from './images/image4.gif'
 import image5 from './images/image5.png'
+
 const ThermistorLessonPlan = () => {
   return (
     <div className='container'>
@@ -27,8 +28,8 @@ const ThermistorLessonPlan = () => {
       
       <br/>
 
-      <img src={image3}></img>
-      <img src={image5}></img>
+      <img src={image3} width="500"></img>
+      <img src={image5} width="500"></img>
       <img src={image2} width="500"></img>
 
       <br/>

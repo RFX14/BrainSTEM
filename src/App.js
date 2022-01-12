@@ -6,7 +6,6 @@ import SensorHome from './components/SensorHome';
 import QuizPage from './components/QuizPage';
 
 import TestSerial from './components/TestSerial';
-import Lesson from './components/Lesson';
 import ThermistorLessonPlan from './components/lessons/thermistor/ThermistorLessonPlan';
 
 function App() {
