@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import RealtimeLineChart from './RealtimeLineChart';
 
 const { ipcRenderer } = window.require('electron');
-const TIME_RANGE_IN_MS = 500;
+const TIME_RANGE_IN_MS = 20;
 const ADD_NEW_DATA_IN_MS = 1000;
 
 const c1 = 1.009249522e-03
@@ -28,11 +28,11 @@ const TestSerial = ({useResistorValue}) => {
         console.log('UseEffect update chart!')
         const addData = data => {
             const newData = ipcRenderer.sendSync('readData');
-            const resistorValue = RESISTOR * (1023.0 / newData - 1.0);
+            const resistorValue = RESISTOR * ((1023.0 / newData) - 1);
             const logResistor = Math.log(resistorValue);
             var farenheit = (1.0 / (c1 + c2*logResistor + c3*Math.pow(logResistor, 3)));
             farenheit = farenheit - 273.15;
-            farenheit = ((farenheit * 9.0) / 5.0) + 32.0;
+            farenheit = (farenheit * (9.0 / 5.0)) + 32.0;
 
             return [...data, {
                 x: new Date(),
@@ -55,14 +55,7 @@ const TestSerial = ({useResistorValue}) => {
     });
 
     return (
-        <div className='container2'>
-            <h3>Recieved Msg: </h3>
-            
-
-            <br/>
-
-            <RealtimeLineChart dataList={dataList} range={TIME_RANGE_IN_MS} yAxisLabel={(useResistorValue ? 'Resistance' : 'Temperature (F)')}/>
-        </div>
+        <RealtimeLineChart dataList={dataList} range={TIME_RANGE_IN_MS} yAxisLabel={(useResistorValue ? 'Resistance' : 'Temperature (F)')}/>
     );
 }
 

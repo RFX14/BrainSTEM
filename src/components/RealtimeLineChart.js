@@ -23,7 +23,8 @@ const RealtimeLineChart = ({dataList, range, yAxisLabel}) => {
         xaxis: {
             labels: {
                 show: false
-            }
+            },
+            range: range
         },
         yaxis: {
             decimalsInFloat: '2',
