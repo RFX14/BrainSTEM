@@ -32,9 +32,9 @@ function App() {
           </div>
         }/>
 
-        <Route path='testserial' element={<TestSerial/>} />
+        <Route path='testserial' element={<TestSerial useResistorValue={true}/>} />
 
-        {/* Sensor Links */}
+        {/* Sensor Page Links */}
         <Route path='/thermistor' element={<SensorHome title='Thermistor' quizLink='/thermistor/prequiz' beginnerLink='/thermistor/blesson'/>} />
         <Route path='/microphone' element={<SensorHome title='Microphone'/>} />
         <Route path='/motion' element={<SensorHome title='Motion Sensor'/>} />
@@ -48,7 +48,7 @@ function App() {
         <Route path='/thermistor/blesson' element={<ThermistorLessonPlan />} />
 
         {/* Sensor Demo Links */}
-        <Route path='thermistor/demo1' element={<TestSerial />} />
+        <Route path='thermistor/demo1' element={<TestSerial useResistorValue={false}/>} />
 
       </Routes>
     </Router>
