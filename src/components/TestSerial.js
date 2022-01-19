@@ -16,11 +16,17 @@ const TestSerial = ({useResistorValue}) => {
     //const [selectedMode, updateSelection] = useState(-1);
     //const [data, updateData] = useState('no-data');
 
-    const nameList = ['a'];
-    const defaultDataList = nameList.map(name => ({
-        name: name,
-        data: []
-    }));
+    const nameList = ['Resistance (Ohms)', 'Temperature (F)'];
+    const defaultDataList = nameList.map(name => (
+        {
+            name: name,
+            data: []
+        },
+        {
+            name: name,
+            data: []
+        }
+    ));
     const [dataList, setDataList] = useState(defaultDataList);
 
     //Update Chart when new data available
@@ -46,6 +52,10 @@ const TestSerial = ({useResistorValue}) => {
                     return {
                         name: val.name,
                         data: addData(val.data)
+                    },
+                    {
+                        name: val.name,
+                        data:
                     };
                 })
             );
