@@ -14,25 +14,12 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  int incomingByte = THERMO;
+  //int incomingByte = THERMO;
+
+  int incomingByte = Serial.read();
   if(incomingByte == MAIN) {
-    readMain();    
+    Serial.println("This is main!");
   } else if(incomingByte == THERMO) {
-    Serial.println(analogRead(THERMOPIN));
-  }
-  //Serial.println(count);
-  //count = (count + 1) % 999999;
-}
-
-void readMain() {
-  while(Serial.read() == MAIN) {
-    Serial.println("This is main!"); 
-  }
-}
-
-void readThermo() {
-  float reading;
-  while(Serial.read() == MAIN) {
     Serial.println(analogRead(THERMOPIN));
   }
 }
