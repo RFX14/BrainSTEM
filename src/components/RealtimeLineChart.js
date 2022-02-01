@@ -1,28 +1,13 @@
 import Chart from 'react-apexcharts';
 
-const RealtimeLineChart = ({dataList, range}) => {
+const RealtimeLineChart = ({dataList, range, yAxisLabel}) => {
     const options = {
         chart: {
-            zoom: {
-                enabled: false
-            },
             animations: {
                 enabled: true,
                 easing: 'linear',
                 dynamicAnimation: {
                     speed: 1000
-                }
-            },
-            xaxis: {
-                type: 'datatime',
-                range: range
-            },
-            yaxis: {
-                labels: {
-                    formatter: val => val.toFixed(0)
-                },
-                title: {
-                    text: 'Value'
                 }
             },
             toolbar: {
@@ -31,6 +16,21 @@ const RealtimeLineChart = ({dataList, range}) => {
             stroke: {
                 curve: 'smooth'
             },
+        },
+        zoom: {
+            enabled: false
+        },
+        xaxis: {
+            labels: {
+                show: false
+            },
+            range: range
+        },
+        yaxis: {
+            decimalsInFloat: '2',
+            title: {
+                text: yAxisLabel
+            }
         },
     };
     
