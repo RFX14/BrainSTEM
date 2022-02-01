@@ -7,7 +7,6 @@ import QuizPage from './components/QuizPage';
 
 import TestSerial from './components/TestSerial';
 import ThermistorLessonPlan from './components/lessons/thermistor/ThermistorLessonPlan';
-import Demo1 from './components/lessons/thermistor/Demo1';
 
 function App() {
   return (
@@ -49,7 +48,7 @@ function App() {
         <Route path='/thermistor/blesson' element={<ThermistorLessonPlan />} />
 
         {/* Sensor Demo Links */}
-        <Route path='thermistor/demo1' element={<Demo1 />} />
+        <Route path='thermistor/demo1' element={<TestSerial useResistorValue={false}/>} />
 
       </Routes>
     </Router>

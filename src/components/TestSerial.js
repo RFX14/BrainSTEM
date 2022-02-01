@@ -16,17 +16,11 @@ const TestSerial = ({useResistorValue}) => {
     //const [selectedMode, updateSelection] = useState(-1);
     //const [data, updateData] = useState('no-data');
 
-    const nameList = ['Resistance (Ohms)', 'Temperature (F)'];
-    const defaultDataList = nameList.map(name => (
-        {
-            name: name,
-            data: []
-        },
-        {
-            name: name,
-            data: []
-        }
-    ));
+    const nameList = ['a'];
+    const defaultDataList = nameList.map(name => ({
+        name: name,
+        data: []
+    }));
     const [dataList, setDataList] = useState(defaultDataList);
 
     //Update Chart when new data available
@@ -34,11 +28,11 @@ const TestSerial = ({useResistorValue}) => {
         console.log('UseEffect update chart!')
         const addData = data => {
             const newData = ipcRenderer.sendSync('readData');
-            const resistorValue = RESISTOR * ((1023.0 / newData) - 1);
+            const resistorValue = RESISTOR * (1023.0 / newData - 1.0);
             const logResistor = Math.log(resistorValue);
             var farenheit = (1.0 / (c1 + c2*logResistor + c3*Math.pow(logResistor, 3)));
             farenheit = farenheit - 273.15;
-            farenheit = (farenheit * (9.0 / 5.0)) + 32.0;
+            farenheit = ((farenheit * 9.0) / 5.0) + 32.0;
 
             return [...data, {
                 x: new Date(),
@@ -52,10 +46,6 @@ const TestSerial = ({useResistorValue}) => {
                     return {
                         name: val.name,
                         data: addData(val.data)
-                    },
-                    {
-                        name: val.name,
-                        data:
                     };
                 })
             );
@@ -65,7 +55,14 @@ const TestSerial = ({useResistorValue}) => {
     });
 
     return (
-        <RealtimeLineChart dataList={dataList} range={TIME_RANGE_IN_MS} yAxisLabel={(useResistorValue ? 'Resistance' : 'Temperature (F)')}/>
+        <div className='container2'>
+            <h3>Recieved Msg: </h3>
+            
+
+            <br/>
+
+            <RealtimeLineChart dataList={dataList} range={TIME_RANGE_IN_MS} yAxisLabel={(useResistorValue ? 'Resistance' : 'Temperature (F)')}/>
+        </div>
     );
 }
 
