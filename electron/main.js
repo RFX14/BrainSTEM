@@ -1,6 +1,8 @@
 const { app, BrowserWindow, ipcMain, ipcRenderer } = require('electron');
+const { from } = require('serialport');
 const SerialPort = require('serialport');
 const { Readline, Delimiter } = require('serialport/lib/parsers');
+const { Buffer } = require('buffer')
 
 let win;
 
@@ -95,6 +97,9 @@ ipcMain.on('requestData', (event, args) => {
 
 var data = 0;
 ipcMain.on('readData', (event, args) => {
+  while(!port.write([48])) {
+    port.write([48]);
+  }
   event.returnValue = data;
 })
 

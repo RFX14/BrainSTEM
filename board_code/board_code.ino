@@ -17,9 +17,13 @@ void loop() {
   //int incomingByte = THERMO;
 
   int incomingByte = Serial.read();
-  if(incomingByte == MAIN) {
-    Serial.println("This is main!");
+  if(incomingByte == 48) {
+    Serial.println(5);
   } else if(incomingByte == THERMO) {
-    Serial.println(analogRead(THERMOPIN));
+    Serial.println(0);
+    //Serial.println(analogRead(THERMOPIN));
+  } else {
+    Serial.println(incomingByte);
   }
+
 }

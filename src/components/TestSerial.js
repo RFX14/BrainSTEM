@@ -12,7 +12,7 @@ const c2 = 2.378405444e-04
 const c3 = 2.019202697e-07
 const RESISTOR = 10000
 
-const TestSerial = ({useResistorValue}) => {
+const TestSerial = ({useResistorValue, sensor}) => {
     //const [selectedMode, updateSelection] = useState(-1);
     //const [data, updateData] = useState('no-data');
 
@@ -27,7 +27,9 @@ const TestSerial = ({useResistorValue}) => {
     useEffect(() => {
         console.log('UseEffect update chart!')
         const addData = data => {
-            const newData = ipcRenderer.sendSync('readData');
+            //const newData = ipcRenderer.sendSync('readData');
+            const newData = ipcRenderer.sendSync('readData', sensor);
+            console.log(newData);
             const resistorValue = RESISTOR * (1023.0 / newData - 1.0);
             const logResistor = Math.log(resistorValue);
             var farenheit = (1.0 / (c1 + c2*logResistor + c3*Math.pow(logResistor, 3)));
@@ -36,7 +38,8 @@ const TestSerial = ({useResistorValue}) => {
 
             return [...data, {
                 x: new Date(),
-                y: (useResistorValue) ? resistorValue : farenheit
+                //y: (useResistorValue) ? resistorValue : farenheit
+                y: newData
             }];
         };
 
@@ -57,7 +60,6 @@ const TestSerial = ({useResistorValue}) => {
     return (
         <div className='container2'>
             <h3>Recieved Msg: </h3>
-            
 
             <br/>
 
