@@ -32,7 +32,7 @@ function App() {
           </div>
         }/>
 
-        <Route path='testserial' element={<TestSerial useResistorValue={true, [0x30]}/>} />
+        <Route path='testserial' element={<TestSerial useResistorValue={true} sensor='0'/>} />
 
         {/* Sensor Page Links */}
         <Route path='/thermistor' element={<SensorHome title='Thermistor' quizLink='/thermistor/prequiz' beginnerLink='/thermistor/blesson'/>} />
@@ -48,7 +48,7 @@ function App() {
         <Route path='/thermistor/blesson' element={<ThermistorLessonPlan />} />
 
         {/* Sensor Demo Links */}
-        <Route path='thermistor/demo1' element={<TestSerial useResistorValue={false, [0x31]}/>} />
+        <Route path='thermistor/demo1' element={<TestSerial useResistorValue={false} sensor='1'/>} />
 
       </Routes>
     </Router>

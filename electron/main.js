@@ -1,8 +1,6 @@
-const { app, BrowserWindow, ipcMain, ipcRenderer } = require('electron');
-const { from } = require('serialport');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const SerialPort = require('serialport');
-const { Readline, Delimiter } = require('serialport/lib/parsers');
-const { Buffer } = require('buffer')
+const { Readline } = require('serialport/lib/parsers');
 
 let win;
 
@@ -87,23 +85,27 @@ var port = new SerialPort('/dev/tty.usbserial-AB0LR1PF', {
 });
 const parser = port.pipe(new Readline({ Delimiter: '\r\n' }))
 
-/* 
-// Sends serial data to react
-var data;
-ipcMain.on('requestData', (event, args) => {
-  event.reply('readData', data);
-});
-*/
-
+//Always update mode when reading
 var data = 0;
+var mode = '0';
 ipcMain.on('readData', (event, args) => {
-  while(!port.write([48])) {
-    port.write([48]);
-  }
+  mode = args;
+
   event.returnValue = data;
 })
 
-// Reads data from serial port
+//Reads data from serial port
 parser.on('data', (newData) => {
-  data = newData.toString();
+  data = newData;
 });
+
+//Write to Arduino regarding mode
+port.on('open', openPort);
+function openPort() {
+  function sendData() {
+    console.log('Writing: ', mode)
+    port.write(mode);
+  }
+
+  setInterval(sendData, 500);
+}

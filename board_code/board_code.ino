@@ -1,7 +1,7 @@
 #define THERMOPIN A0
 #define RESISTOR 10000
 
-const int MAIN = 0, THERMO = 1;
+const int MAIN = 48, THERMO = 49;
 int count = 0;
 
 void readMain();
@@ -17,7 +17,7 @@ void loop() {
   //int incomingByte = THERMO;
 
   int incomingByte = Serial.read();
-  if(incomingByte == 48) {
+  if(incomingByte == MAIN) {
     Serial.println(5);
   } else if(incomingByte == THERMO) {
     Serial.println(0);
