@@ -1,11 +1,13 @@
 import TestSerial from "../../TestSerial";
 import '../../lib/dropdownStyles.css';
 
-const Demo1 = () => {
+const ThermistorDemo1 = () => {
     return (
-        <div className="container2">
+        <div>
+            <TestSerial useResistorValue={true} sensor='1'/>
+            <TestSerial useResistorValue={false} sensor='1'/>
         </div>
     );
 }
 
-export default Demo1
+export default ThermistorDemo1

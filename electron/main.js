@@ -104,7 +104,7 @@ port.on('open', openPort);
 function openPort() {
   function sendData() {
     console.log('Writing: ', mode)
-    port.write(mode);
+    port.write(mode, 'ascii');
   }
 
   setInterval(sendData, 500);

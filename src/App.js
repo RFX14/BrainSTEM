@@ -6,7 +6,10 @@ import SensorHome from './components/SensorHome';
 import QuizPage from './components/QuizPage';
 
 import TestSerial from './components/TestSerial';
+import ThermistorDemo1 from './components/lessons/thermistor/Demo1';
 import ThermistorLessonPlan from './components/lessons/thermistor/ThermistorLessonPlan';
+import PhotocellLessonPlan from './components/lessons/photocell/PhotocellLessonPlan';
+import PhotocellAdvancedLessonPlan from './components/lessons/photocell/PhotocellAdvancedLessonPlan';
 
 function App() {
   return (
@@ -39,16 +42,18 @@ function App() {
         <Route path='/microphone' element={<SensorHome title='Microphone'/>} />
         <Route path='/motion' element={<SensorHome title='Motion Sensor'/>} />
         <Route path='/strain' element={<SensorHome title='Strain Gauge'/>} />
-        <Route path='/light' element={<SensorHome title='Light Sensor'/>} />
+        <Route path='/light' element={<SensorHome title='Light Sensor' beginnerLink='/photocell/blesson' advancedLink='/photocell/alesson'/>} />
 
         {/* Assesment Quiz Links */}
         <Route path='/thermistor/prequiz' element={<QuizPage quizName='testQuiz' />} />
 
         {/* Lesson Plan Links */}
         <Route path='/thermistor/blesson' element={<ThermistorLessonPlan />} />
+        <Route path='/photocell/blesson' element={<PhotocellLessonPlan />} />
+        <Route path='/photocell/alesson' element={<PhotocellAdvancedLessonPlan />} />
 
         {/* Sensor Demo Links */}
-        <Route path='thermistor/demo1' element={<TestSerial useResistorValue={false} sensor='1'/>} />
+        <Route path='thermistor/demo1' element={<ThermistorDemo1/>} />
 
       </Routes>
     </Router>

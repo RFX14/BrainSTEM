@@ -30,16 +30,12 @@ const TestSerial = ({useResistorValue, sensor}) => {
             //const newData = ipcRenderer.sendSync('readData');
             const newData = ipcRenderer.sendSync('readData', sensor);
             console.log(newData);
-            const resistorValue = RESISTOR * (1023.0 / newData - 1.0);
-            const logResistor = Math.log(resistorValue);
-            var farenheit = (1.0 / (c1 + c2*logResistor + c3*Math.pow(logResistor, 3)));
-            farenheit = farenheit - 273.15;
-            farenheit = ((farenheit * 9.0) / 5.0) + 32.0;
+            const resistorValue = RESISTOR / (1023.0 / newData - 1.0);
+            const voltage = .0005 * resistorValue
 
             return [...data, {
                 x: new Date(),
-                //y: (useResistorValue) ? resistorValue : farenheit
-                y: newData
+                y: (useResistorValue) ? resistorValue : voltage
             }];
         };
 
@@ -63,7 +59,7 @@ const TestSerial = ({useResistorValue, sensor}) => {
 
             <br/>
 
-            <RealtimeLineChart dataList={dataList} range={TIME_RANGE_IN_MS} yAxisLabel={(useResistorValue ? 'Resistance' : 'Temperature (F)')}/>
+            <RealtimeLineChart dataList={dataList} range={TIME_RANGE_IN_MS} yAxisLabel={(useResistorValue ? 'Resistance' : 'Voltage')}/>
         </div>
     );
 }

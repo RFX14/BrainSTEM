@@ -1,4 +1,5 @@
 #define THERMOPIN A0
+#define STRAINPIN 3
 #define RESISTOR 10000
 
 const int MAIN = 48, THERMO = 49;
@@ -12,18 +13,25 @@ void setup() {
   Serial.begin(9600);
 }
 
+/*
+  Possible ide:
+    Check which port has a signal and use that
+*/
+
 void loop() {
   // put your main code here, to run repeatedly:
   //int incomingByte = THERMO;
-
+  
   int incomingByte = Serial.read();
-  if(incomingByte == MAIN) {
-    Serial.println(5);
-  } else if(incomingByte == THERMO) {
-    Serial.println(0);
-    //Serial.println(analogRead(THERMOPIN));
+  //Serial.println(analogRead(THERMOPIN));
+  Serial.println(digitalRead(STRAINPIN));
+  /*
+  if(incomingByte == THERMO) {
+    //Serial.println(0);
+    Serial.println(analogRead(THERMOPIN));
   } else {
-    Serial.println(incomingByte);
+    Serial.println(-1);
   }
+  */
 
 }
