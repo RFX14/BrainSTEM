@@ -7,31 +7,26 @@ int count = 0;
 
 void readMain();
 void readThermo();
+int reset = 1;
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
+  //Serial.println("READY");
 }
-
-/*
-  Possible ide:
-    Check which port has a signal and use that
-*/
 
 void loop() {
   // put your main code here, to run repeatedly:
   //int incomingByte = THERMO;
   
-  int incomingByte = Serial.read();
-  //Serial.println(analogRead(THERMOPIN));
-  Serial.println(digitalRead(STRAINPIN));
-  /*
-  if(incomingByte == THERMO) {
-    //Serial.println(0);
-    Serial.println(analogRead(THERMOPIN));
+  char incomingByte = (char)Serial.read();
+  Serial.println("Finished Reading");
+  
+  if(incomingByte == '0') {
+    Serial.println(0);
+    //Serial.println(analogRead(THERMOPIN));
   } else {
-    Serial.println(-1);
+    Serial.println(6);
   }
-  */
-
+  delay(500);
 }

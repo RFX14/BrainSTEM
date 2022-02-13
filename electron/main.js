@@ -1,15 +1,8 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const SerialPort = require('serialport');
-const { Readline } = require('serialport/lib/parsers');
+const { Readline, Ready } = require('serialport/lib/parsers');
 
 let win;
-
-/* 
-  TODO: 
-    [x] Fix parser issues
-    [] Get mode selection working with arduino
-    [] Decide whether to keep comm selection
-*/
 
 function createWindow () {
   // Create the browser window.
@@ -82,6 +75,7 @@ ipcMain.on('updateMode', (event, args) => {
 //Sets up serial port (work in progress)
 var port = new SerialPort('/dev/tty.usbserial-AB0LR1PF', {
   baudRate: 9600,
+  flowControl: false
 });
 const parser = port.pipe(new Readline({ Delimiter: '\r\n' }))
 
@@ -90,13 +84,18 @@ var data = 0;
 var mode = '0';
 ipcMain.on('readData', (event, args) => {
   mode = args;
-
+  console.log('mode:', args);
   event.returnValue = data;
 })
 
 //Reads data from serial port
 parser.on('data', (newData) => {
   data = newData;
+  console.log(data);
+});
+
+parser.on('ready', () => {
+  console.log('arduino ready for stuff');
 });
 
 //Write to Arduino regarding mode
@@ -104,7 +103,9 @@ port.on('open', openPort);
 function openPort() {
   function sendData() {
     console.log('Writing: ', mode)
-    port.write(mode, 'ascii');
+    port.write(mode, 'binary', (err, bytesWritten) => {
+      console.log('bytesWritten: ', bytesWritten);
+    });
   }
 
   setInterval(sendData, 500);
