@@ -10,6 +10,8 @@ import ThermistorDemo1 from './components/lessons/thermistor/Demo1';
 import ThermistorLessonPlan from './components/lessons/thermistor/ThermistorLessonPlan';
 import PhotocellLessonPlan from './components/lessons/photocell/PhotocellLessonPlan';
 import PhotocellAdvancedLessonPlan from './components/lessons/photocell/PhotocellAdvancedLessonPlan';
+import MicrophoneLessonPlan from './components/lessons/microphone/MicroponeLessonPlan';
+import PIRLessonPlan from './components/lessons/pir/PIRLessonPlan';
 
 function App() {
   return (
@@ -39,8 +41,8 @@ function App() {
 
         {/* Sensor Page Links */}
         <Route path='/thermistor' element={<SensorHome title='Thermistor' quizLink='/thermistor/prequiz' beginnerLink='/thermistor/blesson'/>} />
-        <Route path='/microphone' element={<SensorHome title='Microphone'/>} />
-        <Route path='/motion' element={<SensorHome title='Motion Sensor'/>} />
+        <Route path='/microphone' element={<SensorHome title='Microphone' beginnerLink='/microphone/blesson' />}/>
+        <Route path='/motion' element={<SensorHome title='Motion Sensor' beginnerLink='/motion/blesson' />} />
         <Route path='/strain' element={<SensorHome title='Strain Gauge'/>} />
         <Route path='/light' element={<SensorHome title='Light Sensor' beginnerLink='/photocell/blesson' advancedLink='/photocell/alesson'/>} />
 
@@ -49,6 +51,11 @@ function App() {
 
         {/* Lesson Plan Links */}
         <Route path='/thermistor/blesson' element={<ThermistorLessonPlan />} />
+
+        <Route path='/microphone/blesson' element={<MicrophoneLessonPlan />} />
+
+        <Route path='/motion/blesson' element={<PIRLessonPlan />} />
+
         <Route path='/photocell/blesson' element={<PhotocellLessonPlan />} />
         <Route path='/photocell/alesson' element={<PhotocellAdvancedLessonPlan />} />
 
