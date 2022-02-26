@@ -8,9 +8,9 @@ const SensorHome = ({title, quizLink, beginnerLink, advancedLink}) => {
 
             <br/>
 
-            <Button text="Placement Quiz" link={quizLink}/>
             <Button text="Beginner Lessons" link={beginnerLink}/>
             <Button text="Advanced Lessons" link={advancedLink}/>
+            <Button text="Post-Assessment" link={quizLink}/>
         </div>
     )
 }

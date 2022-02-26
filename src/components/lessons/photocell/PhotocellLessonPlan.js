@@ -40,7 +40,7 @@ const PhotocellLessonPlan = () => {
       <br/>
       <br/>
       
-      <Button text='DEMO' link='/thermistor/demo1' />
+      <Button text='DEMO' link='/photocell/demo1' />
     </div>
   );
 }

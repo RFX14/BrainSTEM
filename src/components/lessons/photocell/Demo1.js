@@ -2,7 +2,8 @@ import '../../lib/dropdownStyles.css';
 import SerialPlot from "../../SerialPlot";
 import '../../../App.css';
 
-const ThermistorDemo1 = () => {
+const PhotocellDemo1 = () => {
+    // ! UPDATE with proper conversions
     function getVoltage(adcValue) {
         const RESISTOR = 10000;
         const resistorValue = RESISTOR / (1023.0 / adcValue - 1.0);
@@ -11,6 +12,7 @@ const ThermistorDemo1 = () => {
         return voltage;
     }
 
+    // ! UPDATE with proper conversions
     function getConverted(adcValue) {
         const voltage = getVoltage(adcValue);
         const converted = -1.67e-3 * voltage + 42;
@@ -21,13 +23,12 @@ const ThermistorDemo1 = () => {
     return (
         <div>
             <div className='container2'>
-                <p>Hold the thermistor in your hands and notice the relationship between voltage and temperature!</p>
+                <p>Try obsuring the photocell by different amounts, and notice how the voltage affects the LED's brightness!</p>
             </div>
             
-            <SerialPlot useConvertedValue={true} getVoltageValue={getVoltage} getConvertedValue={getConverted} sensor='1' convertedUnits={'Farenheit'}/>
-            <SerialPlot useConvertedValue={false} getVoltageValue={getVoltage} getConvertedValue={getConverted} sensor='1' convertedUnits={'Farenheit'}/>
+            <SerialPlot useConvertedValue={false} getVoltageValue={getVoltage} getConvertedValue={getConverted} sensor='2'/>
         </div>
     );
 }
 
-export default ThermistorDemo1
+export default PhotocellDemo1

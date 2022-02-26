@@ -9,7 +9,7 @@ function createWindow () {
   win = new BrowserWindow({
     width: 800,
     height: 650,
-    resizable: false,
+    resizable: true,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,

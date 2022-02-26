@@ -12,6 +12,7 @@ import PhotocellLessonPlan from './components/lessons/photocell/PhotocellLessonP
 import PhotocellAdvancedLessonPlan from './components/lessons/photocell/PhotocellAdvancedLessonPlan';
 import MicrophoneLessonPlan from './components/lessons/microphone/MicroponeLessonPlan';
 import PIRLessonPlan from './components/lessons/pir/PIRLessonPlan';
+import PhotocellDemo1 from './components/lessons/photocell/Demo1';
 
 function App() {
   return (
@@ -61,6 +62,8 @@ function App() {
 
         {/* Sensor Demo Links */}
         <Route path='thermistor/demo1' element={<ThermistorDemo1/>} />
+
+        <Route path='photocell/demo1' element={<PhotocellDemo1/>} />
 
       </Routes>
     </Router>
