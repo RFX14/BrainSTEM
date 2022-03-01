@@ -13,6 +13,8 @@ import PhotocellAdvancedLessonPlan from './components/lessons/photocell/Photocel
 import MicrophoneLessonPlan from './components/lessons/microphone/MicroponeLessonPlan';
 import PIRLessonPlan from './components/lessons/pir/PIRLessonPlan';
 import PhotocellDemo1 from './components/lessons/photocell/Demo1';
+import PIRDemo1 from './components/lessons/pir/Demo1';
+import StrainLessonPlan from './components/lessons/strain/StrainLessonPlan';
 
 function App() {
   return (
@@ -44,7 +46,7 @@ function App() {
         <Route path='/thermistor' element={<SensorHome title='Thermistor' quizLink='/thermistor/prequiz' beginnerLink='/thermistor/blesson'/>} />
         <Route path='/microphone' element={<SensorHome title='Microphone' beginnerLink='/microphone/blesson' />}/>
         <Route path='/motion' element={<SensorHome title='Motion Sensor' beginnerLink='/motion/blesson' />} />
-        <Route path='/strain' element={<SensorHome title='Strain Gauge'/>} />
+        <Route path='/strain' element={<SensorHome title='Strain Gauge' beginnerLink='/strain/blesson'/>} />
         <Route path='/light' element={<SensorHome title='Light Sensor' beginnerLink='/photocell/blesson' advancedLink='/photocell/alesson'/>} />
 
         {/* Assesment Quiz Links */}
@@ -57,13 +59,17 @@ function App() {
 
         <Route path='/motion/blesson' element={<PIRLessonPlan />} />
 
+        <Route path='/strain/blesson' element={<StrainLessonPlan />} />
+
         <Route path='/photocell/blesson' element={<PhotocellLessonPlan />} />
         <Route path='/photocell/alesson' element={<PhotocellAdvancedLessonPlan />} />
 
         {/* Sensor Demo Links */}
-        <Route path='thermistor/demo1' element={<ThermistorDemo1/>} />
+        <Route path='/thermistor/demo1' element={<ThermistorDemo1/>} />
 
-        <Route path='photocell/demo1' element={<PhotocellDemo1/>} />
+        <Route path='/motion/demo1' element={<PIRDemo1/>} />
+
+        <Route path='/photocell/demo1' element={<PhotocellDemo1/>} />
 
       </Routes>
     </Router>

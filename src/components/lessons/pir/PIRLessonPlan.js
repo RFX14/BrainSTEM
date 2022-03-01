@@ -27,6 +27,11 @@ const PIRLessonPlan = () => {
             <br/>
 
             <p>Now, what if instead of a human or animal moving in front of a sensor we dropped a really hot spoon. That would also register as “motion” because the sensor is just checking if the sensors are detecting a temperature change.</p>
+
+            <br/>
+            <br/>
+
+            <Button text='DEMO' link='/motion/demo1' />
         </div>
     );
 }

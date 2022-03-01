@@ -24,8 +24,8 @@ const ThermistorDemo1 = () => {
                 <p>Hold the thermistor in your hands and notice the relationship between voltage and temperature!</p>
             </div>
             
-            <SerialPlot useConvertedValue={true} getVoltageValue={getVoltage} getConvertedValue={getConverted} sensor='1' convertedUnits={'Farenheit'}/>
-            <SerialPlot useConvertedValue={false} getVoltageValue={getVoltage} getConvertedValue={getConverted} sensor='1' convertedUnits={'Farenheit'}/>
+            <SerialPlot useConvertedValue={true} getVoltageValue={getVoltage} getConvertedValue={getConverted} sensor='1' convertedUnits={'Farenheit (F)'}/>
+            <SerialPlot useConvertedValue={false} getVoltageValue={getVoltage} getConvertedValue={getConverted} sensor='1' convertedUnits={'Farenheit (F)'}/>
         </div>
     );
 }
