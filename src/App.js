@@ -15,6 +15,7 @@ import PIRLessonPlan from './components/lessons/pir/PIRLessonPlan';
 import PhotocellDemo1 from './components/lessons/photocell/Demo1';
 import PIRDemo1 from './components/lessons/pir/Demo1';
 import StrainLessonPlan from './components/lessons/strain/StrainLessonPlan';
+import StrainDemo1 from './components/lessons/strain/Demo1';
 
 function App() {
   return (
@@ -68,6 +69,8 @@ function App() {
         <Route path='/thermistor/demo1' element={<ThermistorDemo1/>} />
 
         <Route path='/motion/demo1' element={<PIRDemo1/>} />
+
+        <Route path='/strain/demo1' element={<StrainDemo1/>} />
 
         <Route path='/photocell/demo1' element={<PhotocellDemo1/>} />
 

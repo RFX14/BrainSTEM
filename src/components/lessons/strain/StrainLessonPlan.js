@@ -74,7 +74,7 @@ const StrainLessonPlan = () => {
             <br/>
             <br/>
 
-            <Button text='DEMO'/>
+            <Button text='DEMO' link='/strain/demo1'/>
         </div>
     );
 }

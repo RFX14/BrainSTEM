@@ -1,11 +1,19 @@
+#include "HX711.h"
+
+HX711 scale;
+
 #define THERMOPIN A0
-#define STRAINPIN 3
-#define RESISTOR 10000
+#define DOUT 2
+#define SCK 3
 
 const char MAIN = '0', THERMO = '1';
 
 void readMain();
 void readThermo();
+void readStrainGauge();
+
+bool isFirst = true;
+
 
 void setup() {
   // put your setup code here, to run once:
@@ -15,14 +23,32 @@ void setup() {
 
 void loop() {
   char incomingByte = (char) Serial.read();
-  Serial.println("Finished Reading");
   
   if(incomingByte == THERMO) {
-    Serial.println(0);
-    //Serial.println(analogRead(THERMOPIN));
+    isFirst = true;
+    readThermo();
   } else {
-    Serial.println(6);
+    readStrainGauge();
+    isFirst = false;
   }
-  
+}
+
+void readThermo() {
+  Serial.println(0);
+  //Serial.println(analogRead(THERMOPIN));
   delay(500);
+}
+
+void readStrainGauge() {
+  if(isFirst) { 
+      scale.begin(DOUT, SCK);
+      scale.set_scale(2280.f); 
+      scale.tare(); 
+  }
+
+  Serial.println(scale.get_units(), 1);
+  //Serial.println(rand() % 6);
+  scale.power_down();	
+  delay(1000);
+  scale.power_up();
 }
