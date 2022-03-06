@@ -15,23 +15,6 @@ const StrainDemo1 = () => {
         console.log(measurement);
     }
 
-    // ! UPDATE with proper conversions
-    function getVoltage(adcValue) {
-        const RESISTOR = 10000;
-        const resistorValue = RESISTOR / (1023.0 / adcValue - 1.0);
-        const voltage = .0005 * resistorValue;
-
-        return voltage;
-    }
-
-    // ! UPDATE with proper conversions
-    function getConverted(adcValue) {
-        const voltage = getVoltage(adcValue);
-        const converted = -1.67e-3 * voltage + 42;
-
-        return converted;
-    }
-
     return (
         <div>
             <div className='container2'>
