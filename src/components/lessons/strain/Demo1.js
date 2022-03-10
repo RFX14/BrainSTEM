@@ -7,7 +7,7 @@ const { ipcRenderer } = window.require('electron');
 
 const StrainDemo1 = () => {
     const sensor = '0';
-    const [measurement, setMeasurement] = useState(0);
+    const [measurement, setMeasurement] = useState(0.0);
     setInterval(getNewData, 500);
 
     function getNewData() {
@@ -23,7 +23,7 @@ const StrainDemo1 = () => {
             
             <div className='container2'>
                 <h2>Measurment:</h2>
-                <h3>{measurement}</h3>
+                <h3>{measurement} lbs</h3>
             </div>
         </div>
     );

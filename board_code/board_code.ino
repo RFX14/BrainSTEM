@@ -42,11 +42,11 @@ void readThermo() {
 void readStrainGauge() {
   if(isFirst) { 
       scale.begin(DOUT, SCK);
-      scale.set_scale(2280.f); 
+      scale.set_scale(2280.f * (32.5/0.39)); 
       scale.tare(); 
   }
 
-  Serial.println(scale.get_units(), 1);
+  Serial.println(scale.get_units(), 2);
   //Serial.println(rand() % 6);
   scale.power_down();	
   delay(1000);
