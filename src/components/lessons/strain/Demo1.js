@@ -6,7 +6,7 @@ import '../../../App.css';
 const { ipcRenderer } = window.require('electron');
 
 const StrainDemo1 = () => {
-    const sensor = '0';
+    const sensor = '2';
     const [measurement, setMeasurement] = useState(0.0);
     setInterval(getNewData, 500);
 

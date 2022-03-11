@@ -6,14 +6,22 @@ const ThermistorDemo1 = () => {
     function getVoltage(adcValue) {
         const RESISTOR = 10000;
         const resistorValue = RESISTOR / (1023.0 / adcValue - 1.0);
-        const voltage = .0005 * resistorValue;
+        const voltage = (.00025 * resistorValue) % 5;
 
         return voltage;
     }
 
+    //! Using Linear Approx. as the real is too slow
     function getConverted(adcValue) {
-        const voltage = getVoltage(adcValue);
-        const converted = -1.67e-3 * voltage + 42;
+        const RESISTOR = 10000;
+        const resistorValue = RESISTOR / (1023.0 / adcValue - 1.0);
+        console.log(resistorValue)
+        /*
+        const convertedCelsius = 77.6 - (22.7 * Math.log(resistorValue / 1000));
+        const converted = (convertedCelsius * (9/5)) + 32; 
+        */
+        const convertedCelsius = (-1.64*(resistorValue / 1000)) + 44.5;
+        const converted = (convertedCelsius * (9/5)) + 32; 
 
         return converted;
     }
@@ -24,8 +32,8 @@ const ThermistorDemo1 = () => {
                 <p>Hold the thermistor in your hands and notice the relationship between voltage and temperature!</p>
             </div>
             
-            <SerialPlot useConvertedValue={true} getVoltageValue={getVoltage} getConvertedValue={getConverted} sensor='1' convertedUnits={'Farenheit (F)'}/>
-            <SerialPlot useConvertedValue={false} getVoltageValue={getVoltage} getConvertedValue={getConverted} sensor='1' convertedUnits={'Farenheit (F)'}/>
+            <SerialPlot useConvertedValue={true} getVoltageValue={getVoltage} getConvertedValue={getConverted} sensor='1' convertedUnits={'Temp. Farenheit'}/>
+            <SerialPlot useConvertedValue={false} getVoltageValue={getVoltage} getConvertedValue={getConverted} sensor='1' convertedUnits={'Temp. Farenheit'}/>
         </div>
     );
 }

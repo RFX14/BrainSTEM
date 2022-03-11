@@ -37,6 +37,8 @@ const SerialPlot = ({useConvertedValue, getVoltageValue, getConvertedValue, conv
             );
         }, ADD_NEW_DATA_IN_MS);
 
+        console.log('added interval');
+
         return () => clearInterval(interval);
     });
 

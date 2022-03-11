@@ -6,7 +6,7 @@ HX711 scale;
 #define DOUT 2
 #define SCK 3
 
-const char MAIN = '0', THERMO = '1';
+const char MAIN = '0', THERMO = '1', STRAIN = '2';
 
 void readMain();
 void readThermo();
@@ -27,16 +27,19 @@ void loop() {
   if(incomingByte == THERMO) {
     isFirst = true;
     readThermo();
-  } else {
+  } else if(incomingByte == STRAIN) {
     readStrainGauge();
     isFirst = false;
+  } else {
+
   }
 }
 
 void readThermo() {
-  Serial.println(0);
-  //Serial.println(analogRead(THERMOPIN));
-  delay(500);
+  //Serial.println(0);
+  float reading = analogRead(THERMOPIN);
+  Serial.println(reading);
+  delay(10);
 }
 
 void readStrainGauge() {
@@ -45,8 +48,8 @@ void readStrainGauge() {
       scale.set_scale(2280.f * (32.5/0.39)); 
       scale.tare(); 
   }
-
-  Serial.println(scale.get_units(), 2);
+  Serial.println(6);
+  // Serial.println(scale.get_units(), 2);
   //Serial.println(rand() % 6);
   scale.power_down();	
   delay(1000);

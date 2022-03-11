@@ -84,14 +84,14 @@ var data = 0;
 var mode = '0';
 ipcMain.on('readData', (event, args) => {
   mode = args;
-  //console.log('mode:', args);
+  console.log('mode:', args);
   event.returnValue = data;
 })
 
 //Reads data from serial port
 parser.on('data', (newData) => {
   data = newData;
-  //console.log("From Arduino: ", data);
+  console.log("From Arduino: ", data);
 });
 
 parser.on('ready', () => {
