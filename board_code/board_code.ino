@@ -2,7 +2,7 @@
 
 HX711 scale;
 
-#define THERMOPIN A0
+#define THERMOPIN A2
 #define DOUT 2
 #define SCK 3
 
@@ -17,7 +17,7 @@ bool isFirst = true;
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(9600);
+  Serial.begin(115200);
   //Serial.println("READY");
 }
 

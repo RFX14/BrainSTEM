@@ -73,8 +73,14 @@ ipcMain.on('updateMode', (event, args) => {
 });
 
 //Sets up serial port (work in progress)
+/*
 var port = new SerialPort('/dev/tty.usbserial-AB0LR1PF', {
   baudRate: 9600,
+  flowControl: false
+});
+*/
+var port = new SerialPort('/dev/tty.usbmodem00026100041', {
+  baudRate: 115200,
   flowControl: false
 });
 const parser = port.pipe(new Readline({ Delimiter: '\r\n' }))
