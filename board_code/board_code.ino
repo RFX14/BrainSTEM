@@ -1,38 +1,58 @@
-#define THERMOPIN A0
-#define RESISTOR 10000
+#include "HX711.h"
 
-const int MAIN = 0, THERMO = 1;
-int count = 0;
+HX711 scale;
+
+#define THERMOPIN A2
+#define DOUT 2
+#define SCK 3
+
+//const char MAIN = '0', THERMO = '1', STRAIN = '2';
+enum boardState{MAIN, THERMO, STRAIN};
 
 void readMain();
 void readThermo();
+void readStrainGauge();
+
+bool isFirst = true;
+
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(9600);
+  Serial.begin(115200);
+  //Serial.println("READY");
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  int incomingByte = THERMO;
-  if(incomingByte == MAIN) {
-    readMain();    
-  } else if(incomingByte == THERMO) {
-    Serial.println(analogRead(THERMOPIN));
-  }
-  //Serial.println(count);
-  //count = (count + 1) % 999999;
-}
+  char incomingByte = (char) Serial.read();
+  
+  if(incomingByte == THERMO) {
+    isFirst = true;
+    readThermo();
+  } else if(incomingByte == STRAIN) {
+    readStrainGauge();
+    isFirst = false;
+  } else {
 
-void readMain() {
-  while(Serial.read() == MAIN) {
-    Serial.println("This is main!"); 
   }
 }
 
 void readThermo() {
-  float reading;
-  while(Serial.read() == MAIN) {
-    Serial.println(analogRead(THERMOPIN));
+  //Serial.println(0);
+  float reading = analogRead(THERMOPIN);
+  Serial.println(reading);
+  delay(10);
+}
+
+void readStrainGauge() {
+  if(isFirst) { 
+      scale.begin(DOUT, SCK);
+      scale.set_scale(2280.f * (32.5/0.39)); 
+      scale.tare(); 
   }
+  Serial.println(6);
+  // Serial.println(scale.get_units(), 2);
+  //Serial.println(rand() % 6);
+  scale.power_down();	
+  delay(1000);
+  scale.power_up();
 }
