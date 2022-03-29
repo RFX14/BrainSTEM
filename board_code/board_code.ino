@@ -6,7 +6,8 @@ HX711 scale;
 #define DOUT 2
 #define SCK 3
 
-const char MAIN = '0', THERMO = '1', STRAIN = '2';
+//const char MAIN = '0', THERMO = '1', STRAIN = '2';
+enum boardState{MAIN, THERMO, STRAIN};
 
 void readMain();
 void readThermo();
