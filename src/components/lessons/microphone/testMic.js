@@ -1,7 +1,9 @@
 import '../../lib/dropdownStyles.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import '../../../App.css';
-import RegionsPlugin from "wavesurfer.js/dist/plugin/wavesurfer.regions.min";
+import { WaveSurfer, WaveForm } from "wavesurfer-react";
+import TimelinePlugin from "wavesurfer.js/dist/plugin/wavesurfer.timeline.min";
+
 
 const { ipcRenderer } = window.require('electron');
 
@@ -12,7 +14,7 @@ const TestMic = () => {
     const [rawDataArray, setRawDataArray] = useState([]);
     const [audioBuffer, setAudioBuffer] = useState();
 
-    const SAMPLERATE = 512;
+    const SAMPLERATE = 16000;
     const LIMIT = SAMPLERATE * 5; // Expected length of 5 secs of audio 
 
     function recordPressed() {
@@ -23,7 +25,8 @@ const TestMic = () => {
             if (rawDataArray.length > 0) {
                 setRawDataArray([]);
             }
-        } else {
+        } else if (!isRecording && rawDataArray.length > 0) {
+            // Create buffer once done recording
             var normalRaw = [];
             let upperRange = 1;
             let lowerRange = -1;
@@ -50,11 +53,18 @@ const TestMic = () => {
             }
 
             setAudioBuffer(newBuffer);
+            console.log(newBuffer);
         }
     }
 
     function playPressed() {
-        setPlaying(!isPlaying); // toggle status
+        if (rawDataArray.length > 0 && !isRecording) {
+            setPlaying(true);
+            console.log('playing!')
+        } else {
+            setPlaying(false);
+            console.log('noothing to play');
+        }
     }
 
     // Only used when array isn't full, and button record hasn't been pressed yet
@@ -67,8 +77,52 @@ const TestMic = () => {
         }
     });
 
+    // Wave stuff 
+    const plugins = useMemo(() => {
+        return [
+        true && {
+            plugin: TimelinePlugin,
+            options: {
+            container: "#timeline"
+            }
+        }
+        ].filter(Boolean);
+    }, []);
+
+    const wavesurferRef = useRef();
+    const handleWSMount = useCallback((waveSurfer) => {
+        wavesurferRef.current = waveSurfer;
+
+        if (wavesurferRef.current) {
+        //wavesurferRef.current.load("/bensound-ukulele.mp3");
+        wavesurferRef.current.loadDecodedBuffer(audioBuffer);
+
+        wavesurferRef.current.on("ready", () => {
+            console.log("WaveSurfer is ready");
+        });
+
+        wavesurferRef.current.on("loading", (data) => {
+            console.log("loading --> ", data);
+        });
+
+        if (window) {
+            window.surferidze = wavesurferRef.current;
+        }
+        }
+    }, []);
+
+    const play = useCallback(() => {
+        wavesurferRef.current.playPause();
+    }, []);
+
     return (
         <div className='container2'>
+            <WaveSurfer plugins={plugins} onMount={handleWSMount}>
+                <WaveForm id="waveform" hideCursor cursorColor="transparent"></WaveForm>
+                <div id="timeline" />
+            </WaveSurfer>
+
+
             <button className='btn' onClick={recordPressed}> {isRecording ? 'Stop' : 'Record'} </button>
             <button className='btn' onClick={playPressed}> {isPlaying ? 'Pause' : 'Play'} </button>
         </div>
