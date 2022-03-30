@@ -1,10 +1,10 @@
 import '../../lib/dropdownStyles.css';
 import { useState, useEffect } from 'react';
 import '../../../App.css';
-let fs = require('fs');
-let wav = require('node-wav');
+import RegionsPlugin from "wavesurfer.js/dist/plugin/wavesurfer.regions.min";
 
 const { ipcRenderer } = window.require('electron');
+//var createBuffer = require('audio-buffer-from')
 
 const TestMic = () => {
     const sensor = '5';
