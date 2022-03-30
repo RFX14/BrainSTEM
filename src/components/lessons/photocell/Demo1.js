@@ -26,7 +26,7 @@ const PhotocellDemo1 = () => {
                 <p>Try obsuring the photocell by different amounts, and notice how the voltage affects the LED's brightness!</p>
             </div>
             
-            <SerialPlot useConvertedValue={false} getVoltageValue={getVoltage} getConvertedValue={getConverted} sensor='2'/>
+            <SerialPlot useConvertedValue={false} getVoltageValue={getVoltage} getConvertedValue={getConverted} sensor='4'/>
         </div>
     );
 }
