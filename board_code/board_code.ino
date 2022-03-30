@@ -37,7 +37,6 @@ void loop() {
     isFirst = true;
     readThermo();
   }  else if (incomingByte == PHOTO) {
-    // Blink LED and send data to electron
     isFirst = true;
     readPhoto();
   } else if (incomingByte == STRAIN) {

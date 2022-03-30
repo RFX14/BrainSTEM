@@ -60,6 +60,7 @@ const TestMic = () => {
     function playPressed() {
         if (rawDataArray.length > 0 && !isRecording) {
             setPlaying(true);
+            play();
             console.log('playing!')
         } else {
             setPlaying(false);
@@ -80,12 +81,12 @@ const TestMic = () => {
     // Wave stuff 
     const plugins = useMemo(() => {
         return [
-        true && {
-            plugin: TimelinePlugin,
-            options: {
-            container: "#timeline"
+            true && {
+                plugin: TimelinePlugin,
+                options: {
+                container: "#timeline"
+                }
             }
-        }
         ].filter(Boolean);
     }, []);
 
@@ -94,20 +95,20 @@ const TestMic = () => {
         wavesurferRef.current = waveSurfer;
 
         if (wavesurferRef.current) {
-        //wavesurferRef.current.load("/bensound-ukulele.mp3");
-        wavesurferRef.current.loadDecodedBuffer(audioBuffer);
+            //wavesurferRef.current.load("/bensound-ukulele.mp3");
+            wavesurferRef.current.loadDecodedBuffer(audioBuffer);
 
-        wavesurferRef.current.on("ready", () => {
-            console.log("WaveSurfer is ready");
-        });
+            wavesurferRef.current.on("ready", () => {
+                console.log("WaveSurfer is ready");
+            });
 
-        wavesurferRef.current.on("loading", (data) => {
-            console.log("loading --> ", data);
-        });
+            wavesurferRef.current.on("loading", (data) => {
+                console.log("loading --> ", data);
+            });
 
-        if (window) {
-            window.surferidze = wavesurferRef.current;
-        }
+            if (window) {
+                window.surferidze = wavesurferRef.current;
+            }
         }
     }, []);
 
