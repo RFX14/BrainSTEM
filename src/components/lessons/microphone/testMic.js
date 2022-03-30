@@ -1,6 +1,8 @@
 import '../../lib/dropdownStyles.css';
 import { useState, useEffect } from 'react';
 import '../../../App.css';
+let fs = require('fs');
+let wav = require('node-wav');
 
 const { ipcRenderer } = window.require('electron');
 
