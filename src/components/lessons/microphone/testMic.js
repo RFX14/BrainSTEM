@@ -4,7 +4,6 @@ import '../../../App.css';
 import { WaveSurfer, WaveForm } from "wavesurfer-react";
 import TimelinePlugin from "wavesurfer.js/dist/plugin/wavesurfer.timeline.min";
 
-
 const { ipcRenderer } = window.require('electron');
 
 const TestMic = () => {
@@ -122,7 +121,6 @@ const TestMic = () => {
                 <WaveForm id="waveform" hideCursor cursorColor="transparent"></WaveForm>
                 <div id="timeline" />
             </WaveSurfer>
-
 
             <button className='btn' onClick={recordPressed}> {isRecording ? 'Stop' : 'Record'} </button>
             <button className='btn' onClick={playPressed}> {isPlaying ? 'Pause' : 'Play'} </button>

@@ -2,16 +2,17 @@
 
 HX711 scale;
 
-#define THERMO_PIN A2
-#define PHOTO_PIN A3
+#define THERMO_PIN A1
+#define PHOTO_PIN A0
+#define MIC_PIN A2
 
 /* Strain Gauge Pins */
-#define DOUT 2
-#define SCK 3
+#define DOUT 10
+#define SCK 13
 
 /* Motion Pins */
-#define MOTION_PIN 2
-#define LED_PIN 13
+#define MOTION_PIN 9
+#define LED_PIN 6
 
 const char TEST = '0', THERMO = '1', STRAIN = '2', MOTION = '3', PHOTO = '4', MIC = '5';
 
@@ -20,6 +21,7 @@ void readThermo();
 void readStrainGauge();
 void readMotion();
 void readPhoto();
+void readMic();
 
 bool isFirst = true;
 
@@ -45,6 +47,9 @@ void loop() {
   } else if (incomingByte == MOTION) {
     isFirst = true;
     readMotion();
+  } else if (incomingByte == MIC) {
+    isFirst = true;
+    readMic();
   } else {
 
   }
@@ -88,4 +93,10 @@ void readPhoto() {
   float reading = analogRead(PHOTO_PIN);
   Serial.println(reading);
   delay(10);
+}
+
+void readMic() {
+  pinMode(MIC_PIN, INPUT);
+  int micVal = analogRead(MIC_PIN);
+  Serial.println(micVal);
 }

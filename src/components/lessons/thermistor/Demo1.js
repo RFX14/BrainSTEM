@@ -2,6 +2,7 @@ import '../../lib/dropdownStyles.css';
 import SerialPlot from "../../SerialPlot";
 import '../../../App.css';
 
+// ! Make sure PCB uses my way of setup
 const ThermistorDemo1 = () => {
     function getVoltage(adcValue) {
         const RESISTOR = 10000;
