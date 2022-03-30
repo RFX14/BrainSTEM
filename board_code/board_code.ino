@@ -3,11 +3,14 @@
 HX711 scale;
 
 #define THERMOPIN A2
+#define PHOTOPIN A3
+
+/* Strain Gauge Pins */
 #define DOUT 2
 #define SCK 3
 
-//const char MAIN = '0', THERMO = '1', STRAIN = '2';
-enum boardState{MAIN, THERMO, STRAIN};
+const char TEST = '0', THERMO = '1', STRAIN = '2', MOTION = '3', PHOTO = '4', MIC = '5';
+//enum boardState{TEST, THERMO, STRAIN, MOTION, PHOTO, MIC};
 
 void readMain();
 void readThermo();
@@ -25,14 +28,17 @@ void setup() {
 void loop() {
   char incomingByte = (char) Serial.read();
   
-  if(incomingByte == THERMO) {
+  if (incomingByte == THERMO) {
     isFirst = true;
     readThermo();
-  } else if(incomingByte == STRAIN) {
+  }  else if (incomingByte == PHOTOPIN) {
+    // Blink LED and send data to electron
+
+  } else if (incomingByte == STRAIN) {
     readStrainGauge();
     isFirst = false;
   } else {
-
+    
   }
 }
 

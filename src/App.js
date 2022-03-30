@@ -6,6 +6,8 @@ import SensorHome from './components/SensorHome';
 import QuizPage from './components/QuizPage';
 
 import TestSerial from './components/TestSerial';
+import TestMic from './components/lessons/microphone/testMic';
+
 import ThermistorDemo1 from './components/lessons/thermistor/Demo1';
 import ThermistorLessonPlan from './components/lessons/thermistor/ThermistorLessonPlan';
 import PhotocellLessonPlan from './components/lessons/photocell/PhotocellLessonPlan';
@@ -32,6 +34,7 @@ function App() {
             <br/>
 
             <Button text='Test Serial' link='/testserial' color='red'/>
+            <Button text='Test Mic' link='/testmic' color='red'/>
 
             <br/>
             <br/>
@@ -45,6 +48,7 @@ function App() {
         }/>
 
         <Route path='testserial' element={<TestSerial useResistorValue={true} sensor='0'/>} />
+        <Route path='/testmic' element={<TestMic />}/>
 
         {/* Sensor Page Links */}
         <Route path='/thermistor' element={<SensorHome title='Thermistor' quizLink='/thermistor/prequiz' beginnerLink='/thermistor/blesson' advancedLink='/thermistor/alesson'/>} />
