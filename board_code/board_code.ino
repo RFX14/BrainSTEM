@@ -55,6 +55,7 @@ void loop() {
   }
 }
 
+/* Graph voltage of thermistor */
 void readThermo() {
   //Serial.println(0);
   float reading = analogRead(THERMO_PIN);
@@ -62,6 +63,7 @@ void readThermo() {
   delay(10);
 }
 
+/* Display weight of item */
 void readStrainGauge() {
   if (isFirst) { 
       scale.begin(DOUT, SCK);
@@ -76,6 +78,7 @@ void readStrainGauge() {
   scale.power_up();
 }
 
+/* Turn on LED when motino detected, otherwise turn off */
 void readMotion() {
   pinMode(MOTION_PIN, INPUT);
 
@@ -89,14 +92,21 @@ void readMotion() {
   delay(10);
 }
 
+/* Graph voltage of photoresistor */
 void readPhoto() {
   float reading = analogRead(PHOTO_PIN);
   Serial.println(reading);
   delay(10);
 }
 
+/* Toggle LED on clap */
+bool LED_STATUS = false;
 void readMic() {
   pinMode(MIC_PIN, INPUT);
   int micVal = analogRead(MIC_PIN);
+  if(micVal > 600) {
+    LED_STATUS = !LED_STATUS;
+    digitalWrite(LED_PIN, LED_STATUS);
+  }
   Serial.println(micVal);
 }

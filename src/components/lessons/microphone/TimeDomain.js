@@ -13,20 +13,26 @@ const TimeDomain = () => {
     }
 
     return (
-        <div className='container2'>
-            <h1>Time Domain</h1>
+        <div>
+            <div className='container2'>
+                <p>Click the play button, and notice how your voice affects the chart! Notice that we can view audio in two different domains time and frequency, you can switch between them using the button down below!</p>
+            </div>
 
-            <ReactMic
-            record={record}
-            visualSetting="sinewave"
-            className="sound-wave"
-            onStop={() => onStop}
-            strokeColor="#000000"
-            backgroundColor="#FFFFFF" 
-            />
+            <div className='container2'>
+                <h1>Time Domain</h1>
 
-            <button className='btn' onClick={() => setRecord(!record)}> {record ? "Stop" : "Play"} </button>
-            <Button link='/mic/freqdomain' color='black' text='Change View' />
+                <ReactMic
+                record={record}
+                visualSetting="sinewave"
+                className="sound-wave"
+                onStop={() => onStop}
+                strokeColor="#000000"
+                backgroundColor="#FFFFFF" 
+                />
+
+                <button className='btn' onClick={() => setRecord(!record)}> {record ? "Stop" : "Play"} </button>
+                <Button link='/mic/freqdomain' color='black' text='Change View' />
+            </div>
         </div>
     );
 }
