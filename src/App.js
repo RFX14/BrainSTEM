@@ -35,12 +35,13 @@ function App() {
             <h2>Available Sensors</h2> 
             
             <br/>
-
+            { /*
             <Button text='Test Serial' link='/testserial' color='red'/>
             <Button text='Test Mic' link='/mic/timedomain' color='red'/>
-
+            
             <br/>
             <br/>
+            */ }
 
             <Button text='Thermistor' link='/thermistor'/>
             <Button text='Microphone' link='/microphone'/>

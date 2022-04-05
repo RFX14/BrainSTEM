@@ -15,7 +15,7 @@ const TimeDomain = () => {
     return (
         <div>
             <div className='container2'>
-                <p>Click the play button, and notice how your voice affects the chart! Notice that we can view audio in two different domains time and frequency, you can switch between them using the button down below!</p>
+                <p>Click the start button, and notice how your voice affects the chart! Notice that we can view audio in two different domains time and frequency, you can switch between them using the button down below!</p>
             </div>
 
             <div className='container2'>
@@ -30,7 +30,7 @@ const TimeDomain = () => {
                 backgroundColor="#FFFFFF" 
                 />
 
-                <button className='btn' onClick={() => setRecord(!record)}> {record ? "Stop" : "Play"} </button>
+                <button className='btn' onClick={() => setRecord(!record)}> {record ? "Stop" : "Start"} </button>
                 <Button link='/mic/freqdomain' color='black' text='Change View' />
             </div>
         </div>
