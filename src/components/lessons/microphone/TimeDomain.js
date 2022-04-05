@@ -25,7 +25,7 @@ const TimeDomain = () => {
                 record={record}
                 visualSetting="sinewave"
                 className="sound-wave"
-                onStop={() => onStop}
+                onStop={(recordedData) => onStop(recordedData)}
                 strokeColor="#000000"
                 backgroundColor="#FFFFFF" 
                 />
