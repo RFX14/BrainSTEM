@@ -21,6 +21,8 @@ import StrainDemo1 from './components/lessons/strain/Demo1';
 import ThermistorAdvancedLessonPlan from './components/lessons/thermistor/ThermistorAdvancedLessonPlan';
 import MicrophoneAdvancedLessonPlan from './components/lessons/microphone/MicrophoneAdvacnedLessonPlan';
 import PIRAdvancedLessonPlan from './components/lessons/pir/PIRAdvancedLessonPlan';
+import FreqDomain from './components/lessons/microphone/FreqDomain';
+import TimeDomain from './components/lessons/microphone/TimeDomain';
 
 function App() {
   return (
@@ -34,7 +36,7 @@ function App() {
             <br/>
 
             <Button text='Test Serial' link='/testserial' color='red'/>
-            <Button text='Test Mic' link='/testmic' color='red'/>
+            <Button text='Test Mic' link='/mic/timedomain' color='red'/>
 
             <br/>
             <br/>
@@ -77,6 +79,9 @@ function App() {
 
         {/* Sensor Demo Links */}
         <Route path='/thermistor/demo1' element={<ThermistorDemo1/>} />
+        
+        <Route path='/mic/timedomain' element={<TimeDomain />} />
+        <Route path='/mic/freqdomain' element={<FreqDomain />} />
 
         <Route path='/motion/demo1' element={<PIRDemo1/>} />
 

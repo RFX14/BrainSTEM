@@ -79,10 +79,17 @@ var port = new SerialPort('/dev/tty.usbserial-AB0LR1PF', {
   flowControl: false
 });
 */
+/*
 var port = new SerialPort('/dev/tty.usbmodem00026100041', {
   baudRate: 115200,
   flowControl: false
 });
+*/
+var port = new SerialPort('/dev/tty.usbmodem14401', {
+  baudRate: 9600,
+  flowControl: false
+});
+
 const parser = port.pipe(new Readline({ Delimiter: '\r\n' }))
 
 //Always update mode when reading
