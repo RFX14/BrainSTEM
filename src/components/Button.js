@@ -17,13 +17,13 @@ const Button = ({color, text, link}) => {
 Button.defaultProps = {
     link: "/",
     color: "steelblue",
-    text: "Text Not Assigned"
+    text: "Text Not Assigned",
 }
 
 Button.propTypes = {
     color: PropTypes.string,
     text: PropTypes.string,
-    link: PropTypes.string
+    link: PropTypes.string,
 }
 
 export default Button

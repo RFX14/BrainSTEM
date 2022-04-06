@@ -25,6 +25,7 @@ const TimeDomain = () => {
                 record={record}
                 visualSetting="frequencyBars"
                 className="sound-wave"
+                mimeType="audio/webm"
                 onStop={(recordedData) => onStop(recordedData)}
                 strokeColor="#000000"
                 backgroundColor="#FFFFFF" 

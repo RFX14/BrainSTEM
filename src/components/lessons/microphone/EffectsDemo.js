@@ -7,17 +7,39 @@ import Button from '../../Button';
 import * as Tone from 'tone'
 
 var player = null;
-const TimeDomain = () => {
+const EffectsDemo = () => {
     const [record, setRecord] = useState(false);
+    const [recordedData, setData] = useState();
+
+    function onData(data) {
+        if(player != null) {
+            player.stop();
+        }
+    }
 
     function onStop(data) {
+        setData(data);
         console.log('recordedBlob is: ', data);
+
+        const blobUrl = URL.createObjectURL(data.blob);
+        console.log(blobUrl)
+        if(player != null) {
+            player.dispose();
+        }
+        player = new Tone.Player(blobUrl, () => {
+            console.log(player.loaded)
+            const filter = new Tone.AutoFilter(10, 300, 4).start();
+            const og = new Tone.Distortion(0.1);
+            player.loop = true
+            player.chain(filter, Tone.Destination);
+            player.start()
+        }).toDestination()
     }
 
     return (
         <div>
             <div className='container2'>
-                <p>Click the start button, and notice how your voice affects the chart! Notice that we can view audio in two different domains time and frequency, you can switch between them using the button down below!</p>
+                <p>Record some audio, after selecting what effects to apply! Notice how bitrate effects audio quality! And play around with some pitch shifting!</p>
             </div>
 
             <div className='container2'>
@@ -28,6 +50,7 @@ const TimeDomain = () => {
                 visualSetting="sinewave"
                 className="sound-wave"
                 mimeType="audio/webm"
+                onData={(recordedData) => onData(recordedData)}
                 onStop={(recordedData) => onStop(recordedData)}
                 strokeColor="#000000"
                 backgroundColor="#FFFFFF" 
@@ -40,4 +63,4 @@ const TimeDomain = () => {
     );
 }
 
-export default TimeDomain
+export default EffectsDemo
