@@ -24,6 +24,7 @@ import PIRAdvancedLessonPlan from './components/lessons/pir/PIRAdvancedLessonPla
 import FreqDomain from './components/lessons/microphone/FreqDomain';
 import TimeDomain from './components/lessons/microphone/TimeDomain';
 import MicDemo1 from './components/lessons/microphone/Demo1';
+import EffectsDemo from './components/lessons/microphone/EffectsDemo';
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
             
             <br/>
             <Button text='Test Serial' link='/testserial' color='red'/>
-            <Button text='Test Mic' link='/mic/timedomain' color='red'/>
+            <Button text='Test Mic' link='/mic/effectsdemo' color='red'/>
             { /*
             
             <br/>
@@ -86,6 +87,7 @@ function App() {
         <Route path='/mic/demo2' element={<TimeDomain />} />
         <Route path='/mic/timedomain' element={<TimeDomain />} />
         <Route path='/mic/freqdomain' element={<FreqDomain />} />
+        <Route path='/mic/effectsdemo' element={<EffectsDemo />} />
 
         <Route path='/motion/demo1' element={<PIRDemo1/>} />
 

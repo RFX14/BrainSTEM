@@ -5,13 +5,29 @@ import { ReactMic } from 'react-mic'
 import React from 'react';
 import Button from '../../Button';
 import * as Tone from 'tone'
+import Slider from '@material-ui/core/Slider'
 
 var player = null;
+var bits = 4;
+var pitch = 0;
 const EffectsDemo = () => {
     const [record, setRecord] = useState(false);
     const [recordedData, setData] = useState();
+    const [bitDepth, changeBits] = useState(bits);
+    const [pitchShift, changePitch] = useState(pitch);
+
+    function updateBitStuff(data) {
+        changeBits(data);
+        bits = data;
+    }
+
+    function updatePitchStuff(data) {
+        changePitch(data);
+        pitch = data;
+    }
 
     function onData(data) {
+        console.log(bitDepth);
         if(player != null) {
             player.stop();
         }
@@ -19,7 +35,7 @@ const EffectsDemo = () => {
 
     function onStop(data) {
         setData(data);
-        console.log('recordedBlob is: ', data);
+        console.log('recordedBlob is: ', bits);
 
         const blobUrl = URL.createObjectURL(data.blob);
         console.log(blobUrl)
@@ -28,10 +44,12 @@ const EffectsDemo = () => {
         }
         player = new Tone.Player(blobUrl, () => {
             console.log(player.loaded)
-            const filter = new Tone.AutoFilter(10, 300, 4).start();
-            const og = new Tone.Distortion(0.1);
+            const shifted = new Tone.PitchShift(pitch);
+            const filter = new Tone.BitCrusher(bits);
+            const distor = new Tone.Distortion(1);
+
+            player.chain(shifted, filter, distor, Tone.Destination);
             player.loop = true
-            player.chain(filter, Tone.Destination);
             player.start()
         }).toDestination()
     }
@@ -43,7 +61,7 @@ const EffectsDemo = () => {
             </div>
 
             <div className='container2'>
-                <h1>Time Domain</h1>
+                <h1>Effects Demo</h1>
 
                 <ReactMic
                 record={record}
@@ -56,8 +74,37 @@ const EffectsDemo = () => {
                 backgroundColor="#FFFFFF" 
                 />
 
-                <button className='btn' onClick={() => setRecord(!record)}> {record ? "Stop" : "Start"} </button>
-                <Button link='/mic/freqdomain' color='black' text='Change View' />
+                <button className='btn' onClick={() => setRecord(!record)}> {record ? "Stop" : "Record"} </button>
+                
+                <br />
+                <br />
+
+                <h3>Audio Bit Depth</h3>
+                <Slider
+                aria-label="Bit Depth"
+                value={bitDepth}
+                onChange={(e, value) => updateBitStuff(value)}
+                valueLabelDisplay="auto"
+                marks={true}
+                step={1}
+                min={4}
+                max={16}
+                />
+
+                <br />
+                <br />
+
+                <h3>Pitch Shift</h3>
+                <Slider
+                aria-label="Pitch Shift"
+                value={pitchShift}
+                onChange={(e, value) => updatePitchStuff(value)}
+                valueLabelDisplay="auto"
+                marks={true}
+                step={1}
+                min={-8}
+                max={8}
+                />
             </div>
         </div>
     );

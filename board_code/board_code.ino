@@ -28,7 +28,7 @@ bool isFirst = true;
 void setup() {
   // put your setup code here, to run once:
   pinMode(LED_PIN, OUTPUT);
-  Serial.begin(9600);
+  Serial.begin(115200);
   //Serial.println("READY");
 }
 
