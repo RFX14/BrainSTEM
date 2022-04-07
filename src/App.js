@@ -25,6 +25,9 @@ import FreqDomain from './components/lessons/microphone/FreqDomain';
 import TimeDomain from './components/lessons/microphone/TimeDomain';
 import MicDemo1 from './components/lessons/microphone/Demo1';
 import EffectsDemo from './components/lessons/microphone/EffectsDemo';
+import ThermistorDemo2 from './components/lessons/thermistor/Demo2';
+import StrainDemo2 from './components/lessons/strain/Demo2';
+import StrainAdvancedLessonPlan from './components/lessons/strain/StrainAdvanced';
 
 function App() {
   return (
@@ -35,14 +38,14 @@ function App() {
           <div className="container">
             <h2>Available Sensors</h2> 
             
+            { /*
             <br/>
             <Button text='Test Serial' link='/testserial' color='red'/>
             <Button text='Test Mic' link='/mic/effectsdemo' color='red'/>
-            { /*
             
             <br/>
-            <br/>
             */ }
+            <br/>
 
             <Button text='Thermistor' link='/thermistor'/>
             <Button text='Microphone' link='/microphone'/>
@@ -59,7 +62,7 @@ function App() {
         <Route path='/thermistor' element={<SensorHome title='Thermistor' quizLink='/thermistor/prequiz' beginnerLink='/thermistor/blesson' advancedLink='/thermistor/alesson'/>} />
         <Route path='/microphone' element={<SensorHome title='Microphone' beginnerLink='/microphone/blesson' advancedLink='/microphone/alesson'/>} />
         <Route path='/motion' element={<SensorHome title='Motion Sensor' beginnerLink='/motion/blesson' advancedLink='/motion/alesson'/>} />
-        <Route path='/strain' element={<SensorHome title='Strain Gauge' beginnerLink='/strain/blesson'/>} />
+        <Route path='/strain' element={<SensorHome title='Strain Gauge' beginnerLink='/strain/blesson' advancedLink='/strain/alesson'/>} />
         <Route path='/light' element={<SensorHome title='Light Sensor' beginnerLink='/photocell/blesson' advancedLink='/photocell/alesson'/>} />
 
         {/* Assesment Quiz Links */}
@@ -76,12 +79,14 @@ function App() {
         <Route path='/motion/alesson' element={<PIRAdvancedLessonPlan />} />
 
         <Route path='/strain/blesson' element={<StrainLessonPlan />} />
+        <Route path='/strain/alesson' element={<StrainAdvancedLessonPlan />} />
 
         <Route path='/photocell/blesson' element={<PhotocellLessonPlan />} />
         <Route path='/photocell/alesson' element={<PhotocellAdvancedLessonPlan />} />
 
         {/* Sensor Demo Links */}
         <Route path='/thermistor/demo1' element={<ThermistorDemo1/>} />
+        <Route path='/thermistor/demo2' element={<ThermistorDemo2 />} />
         
         <Route path='/mic/demo1' element={<MicDemo1 />} />
         <Route path='/mic/demo2' element={<TimeDomain />} />
@@ -92,6 +97,7 @@ function App() {
         <Route path='/motion/demo1' element={<PIRDemo1/>} />
 
         <Route path='/strain/demo1' element={<StrainDemo1/>} />
+        <Route path='/strain/demo2' element={<StrainDemo2 />} />
 
         <Route path='/photocell/demo1' element={<PhotocellDemo1/>} />
 
