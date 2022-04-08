@@ -28,6 +28,7 @@ import EffectsDemo from './components/lessons/microphone/EffectsDemo';
 import ThermistorDemo2 from './components/lessons/thermistor/Demo2';
 import StrainDemo2 from './components/lessons/strain/Demo2';
 import StrainAdvancedLessonPlan from './components/lessons/strain/StrainAdvanced';
+import PhotocellDemo2 from './components/lessons/photocell/Demo2';
 
 function App() {
   return (
@@ -100,6 +101,7 @@ function App() {
         <Route path='/strain/demo2' element={<StrainDemo2 />} />
 
         <Route path='/photocell/demo1' element={<PhotocellDemo1/>} />
+        <Route path='/photocell/demo2' element={<PhotocellDemo2 />} />
 
       </Routes>
     </Router>

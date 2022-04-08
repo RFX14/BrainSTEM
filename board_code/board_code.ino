@@ -14,7 +14,7 @@ HX711 scale;
 #define MOTION_PIN 9
 #define LED_PIN 6
 
-const char TEST = '0', THERMO = '1', STRAIN = '2', MOTION = '3', PHOTO = '4', MIC = '5';
+const char TEST = '0', THERMO = '1', STRAIN = '2', MOTION = '3', PHOTO = '4', MIC = '5', PHOTO2 = '6';
 
 void readMain();
 void readThermo();
@@ -22,8 +22,10 @@ void readStrainGauge();
 void readMotion();
 void readPhoto();
 void readMic();
+void readPhoto2();
 
 bool isFirst = true;
+char incomingByte = 0;
 
 void setup() {
   // put your setup code here, to run once:
@@ -50,8 +52,9 @@ void loop() {
   } else if (incomingByte == MIC) {
     isFirst = true;
     readMic();
-  } else {
-
+  } else if (incomingByte ^ PHOTO2 >= 10) {
+    isFirst = true;
+    readPhoto2();
   }
 }
 
@@ -109,4 +112,30 @@ void readMic() {
     digitalWrite(LED_PIN, LED_STATUS);
   }
   Serial.println(micVal);
+}
+
+void readPhoto2() {
+  int reading = analogRead(PHOTO_PIN);
+  int goalSwitch = 206; // Min value before change (approx 1 V)
+  
+  switch (incomingByte ^ PHOTO2) {
+  case 58:
+    goalSwitch = 206; // approx 1 V
+    break;
+  case 59:
+    goalSwitch = 410; // approx 2 V
+    break;
+  case 60:
+    goalSwitch = 615; // approx 3 V
+    break;
+  default: 
+    goalSwitch = 820; // approx 4 V
+    break;
+  }
+
+  // Toggle LED based on photocell sensitivy
+  if (reading == goalSwitch) {
+    LED_STATUS = !LED_STATUS;
+    digitalWrite(LED_PIN, LED_STATUS);
+  }
 }
