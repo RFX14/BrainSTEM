@@ -116,20 +116,20 @@ void readMic() {
 
 void readPhoto2() {
   int reading = analogRead(PHOTO_PIN);
-  int goalSwitch = 206; // Min value before change (approx 1 V)
+  int goalSwitch = 52; // Min value before change (approx 0.25 V)
   
   switch (incomingByte ^ PHOTO2) {
   case 58:
-    goalSwitch = 206; // approx 1 V
+    goalSwitch = 52; // approx 0.25 V
     break;
   case 59:
-    goalSwitch = 410; // approx 2 V
+    goalSwitch = 103; // approx 0.5 V
     break;
   case 60:
-    goalSwitch = 615; // approx 3 V
+    goalSwitch = 155; // approx 0.75 V
     break;
   default: 
-    goalSwitch = 820; // approx 4 V
+    goalSwitch = 206; // approx 1 V
     break;
   }
 

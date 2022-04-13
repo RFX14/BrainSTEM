@@ -31,4 +31,196 @@ const testQuiz = {
     ]
 }
 
-export default testQuiz
+const thermB = {
+  "quizTitle": "Beginner Thermistor Assessment",
+  "questions": [
+    {
+      "question": "Electricity is much like ____ in a hose",
+      "questionType": "text",
+      "answers": [
+        "WATER",
+        "THE OPENING",
+        "THE LINING",
+        "ANTS"
+      ],
+      "correctAnswer": "1",
+      "point": "1"
+    },
+    {
+      "question": "To reduce the amount of voltage in a circuit you would add a ____ to \"squeeze the ____\"",
+      "questionType": "text",
+      "answers": [
+        "RESISTOR | HOSE",
+        "RESISTOR | ANTS",
+        "VOLTAGE | HOSE",
+        "VOLTAGE | ANTS"
+      ],
+      "correctAnswer": "1",
+      "point": "1"
+    },
+    {
+      "question": "Thermistors are different from regular resistor because their resistance changes based on ____",
+      "questionType": "text",
+      "answers": [
+        "LIGHT",
+        "SOUND",
+        "TEMPERATURE",
+        "ALTITUDE"
+      ],
+      "correctAnswer": "3",
+      "point": "1"
+    }
+  ]
+}
+
+const photoB = {
+  "quizTitle": "Beginner Photocell Assesment ",
+  "questions": [
+    {
+      "question": "Electricity is measured in ____",
+      "questionType": "text",
+      "answers": [
+        "OHMS",
+        "AMPS",
+        "VOLTS",
+        "FARADS"
+      ],
+      "correctAnswer": "3",
+      "point": "1"
+    },
+    {
+      "question": "Photocells are different from regular resistor beacuse their resistance changes based on ____",
+      "questionType": "text",
+      "answers": [
+        "LIGHT",
+        "SOUND",
+        "TEMPERATURE",
+        "ALTITUDE"
+      ],
+      "correctAnswer": "1",
+      "point": "1"
+    }
+  ]
+}
+
+const strainB = {
+  "quizTitle": "Beginner Strain Gauge Assesment",
+  "questions": [
+    {
+      "question": "The tiny lines on the strain gauge sensor are actually ____",
+      "questionType": "text",
+      "answers": [
+        "MAGIC",
+        "ANTS",
+        "ELECTRONS",
+        "WIRES"
+      ],
+      "correctAnswer": "4",
+      "point": "1"
+    },
+    {
+      "question": "Every object in the world has some ____, even wires",
+      "questionType": "text",
+      "answers": [
+        "ANTS",
+        "RESISTANCE",
+        "VOLTAGE",
+        "CURRENT"
+      ],
+      "correctAnswer": "2",
+      "point": "1"
+    },
+    {
+      "question": "What happens when a strain gauge sensor is compressed or stretched?",
+      "questionType": "text",
+      "answers": [
+        "It tears because it is very small and fragile",
+        "The resistance changes",
+        "Strain Gauge sensors can't be compressed or stretched",
+        "Nothing happens"
+      ],
+      "correctAnswer": "2",
+      "point": "1"
+    }
+  ]
+}
+
+const microB = {
+  "quizTitle": "Beginner Microphone Assesment",
+  "questions": [
+    {
+      "question": "____ corresponds to how loud a sound or voice is.",
+      "questionType": "text",
+      "answers": [
+        "AMPLITUDE",
+        "PITCH"
+      ],
+      "correctAnswer": "1",
+      "point": "1"
+    },
+    {
+      "question": "____ corresponds to how high or low a voice sounds.",
+      "questionType": "text",
+      "answers": [
+        "AMPLITUDE",
+        "PITCH"
+      ],
+      "correctAnswer": "2",
+      "point": "1"
+    },
+    {
+      "question": "The electricity coming out of a capacitor changes based on the ____ plates",
+      "questionType": "text",
+      "answers": [
+        "Size of the plates",
+        "Weight of the plates",
+        "Distance between the plates",
+        "Material of the plates"
+      ],
+      "correctAnswer": "3",
+      "point": "1"
+    }
+  ]
+}
+
+const pirB = {
+  "quizTitle": "Beginner PIR Assesment",
+  "questions": [
+    {
+      "question": "Both humans and animals emit ____, but plants do not.",
+      "questionType": "text",
+      "answers": [
+        "HEAT",
+        "COLD AIR",
+        "ANTS"
+      ],
+      "correctAnswer": "1",
+      "point": "1"
+    },
+    {
+      "question": "The motion sensor works based on ____.",
+      "questionType": "text",
+      "answers": [
+        "COLD AIR",
+        "HEAT",
+        "MAGIC"
+      ],
+      "correctAnswer": "2",
+      "point": "1"
+    },
+    {
+      "question": "____ could get past a motion sensor without issue.",
+      "questionType": "text",
+      "answers": [
+        "Anything with a higher temperature than the background",
+        "Very large ants",
+        "Anything with a lower temperature than the background",
+        "Anything with the same temperature as the background"
+      ],
+      "correctAnswer": "4",
+      "point": "1"
+    }
+  ]
+}
+
+export {testQuiz, thermB, photoB, strainB, microB, pirB}

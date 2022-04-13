@@ -32,7 +32,7 @@ const PhotocellDemo2 = () => {
                 <br />
                 <br />
 
-                <h3>Photocell Sensitivity</h3>
+                <h3>Photocell Sensitivity (Divide by 4, to get Voltage Value)</h3>
                 <Slider
                 aria-label="sensitivity"
                 value={sensi}
