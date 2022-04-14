@@ -22,7 +22,7 @@ function createWindow () {
   win.loadURL('http://localhost:3000');
 
   // Open the DevTools.
-  //win.webContents.openDevTools();
+  win.webContents.openDevTools();
 }
 
 // This method will be called when Electron has finished
@@ -79,7 +79,7 @@ var port = new SerialPort('/dev/tty.usbserial-AB0LR1PF', {
   flowControl: false
 });
 */
-var port = new SerialPort('/dev/tty.usbmodem00026099601', {
+var port = new SerialPort('/dev/tty.usbmodem00026100041', {
   baudRate: 115200,
   flowControl: false
 });

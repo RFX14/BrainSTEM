@@ -5,7 +5,7 @@ import '../../../App.css';
 const PhotocellDemo1 = () => {
     // ! UPDATE with proper conversions
     function getVoltage(adcValue) {
-        const RESISTOR = 10000;
+        const RESISTOR = 5000; 
         const resistorValue = RESISTOR / (1023.0 / adcValue - 1.0);
         const voltage = .0005 * resistorValue;
 

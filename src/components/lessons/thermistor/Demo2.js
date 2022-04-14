@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import '../../../App.css';
 
 const { ipcRenderer } = window.require('electron');
-
+var me = 0;
+var re = 0;
 const ThermistorDemo2 = () => {
     const sensor = '1';
     const [measurement, setMeasurement] = useState(0.0);
@@ -14,7 +15,7 @@ const ThermistorDemo2 = () => {
     //! Using Linear Approx. as the real is too slow
     function getConverted() {
         const RESISTOR = 10000;
-        const adcValue = setMeasurement(ipcRenderer.sendSync('readData', sensor));
+        const adcValue = ipcRenderer.sendSync('readData', sensor);
         const resistorValue = RESISTOR / (1023.0 / adcValue - 1.0);
         console.log(resistorValue)
         /*
@@ -26,6 +27,7 @@ const ThermistorDemo2 = () => {
 
         setResist(resistorValue);
         setMeasurement(converted);
+        console.log(converted, resistorValue);
     }
 
     return (
