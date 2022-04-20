@@ -23,9 +23,10 @@ void readMotion();
 void readPhoto();
 void readMic();
 void readPhoto2();
+void readMic2();
 
 bool isFirst = true;
-char incomingByte = 0;
+char incomingByte = '!';
 
 void setup() {
   // put your setup code here, to run once:
@@ -35,7 +36,11 @@ void setup() {
 }
 
 void loop() {
-  char incomingByte = (char) Serial.read();
+  incomingByte = '!';
+
+  if (Serial.available()) {
+    incomingByte = (char) Serial.read();
+  }
   
   if (incomingByte == THERMO) {
     isFirst = true;
@@ -52,9 +57,12 @@ void loop() {
   } else if (incomingByte == MIC) {
     isFirst = true;
     readMic();
-  } else if (incomingByte ^ PHOTO2 >= 10) {
+  } else if (incomingByte >= 58 && incomingByte <= 61) {
     isFirst = true;
     readPhoto2();
+  } else if (incomingByte >= 62 && incomingByte <= 65) {
+    isFirst = true;
+    readMic2();
   }
 }
 
@@ -116,26 +124,56 @@ void readMic() {
 
 void readPhoto2() {
   int reading = analogRead(PHOTO_PIN);
-  int goalSwitch = 52; // Min value before change (approx 0.25 V)
+  int goalSwitch = 58; // Min value before change (approx 0.25 V)
   
-  switch (incomingByte ^ PHOTO2) {
+  switch (incomingByte) {
   case 58:
-    goalSwitch = 52; // approx 0.25 V
+    goalSwitch = 410; // approx 2 V
     break;
   case 59:
-    goalSwitch = 103; // approx 0.5 V
+    goalSwitch = 615; // approx 3 V
     break;
   case 60:
-    goalSwitch = 155; // approx 0.75 V
+    goalSwitch = 820; // approx 4 V
     break;
   default: 
-    goalSwitch = 206; // approx 1 V
+    goalSwitch = 950; // approx 5 V
     break;
   }
 
   // Toggle LED based on photocell sensitivy
-  if (reading == goalSwitch) {
-    LED_STATUS = !LED_STATUS;
-    digitalWrite(LED_PIN, LED_STATUS);
+  if (reading >= goalSwitch) {
+    digitalWrite(LED_PIN, HIGH);
+  } else {
+    digitalWrite(LED_PIN, LOW);
   }
+  Serial.println(reading);
+}
+
+void readMic2() {
+  int reading = analogRead(MIC_PIN);
+  int goalSwitch = 62; // Min value before change (approx 0.25 V)
+  
+  switch (incomingByte) {
+  case 62:
+    goalSwitch = 410; // approx 2 V
+    break;
+  case 63:
+    goalSwitch = 615; // approx 3 V
+    break;
+  case 64:
+    goalSwitch = 820; // approx 4 V
+    break;
+  default: 
+    goalSwitch = 950; // approx 5 V
+    break;
+  }
+
+  // Toggle LED based on photocell sensitivy
+  if (reading >= goalSwitch) {
+    digitalWrite(LED_PIN, HIGH);
+  } else {
+    digitalWrite(LED_PIN, LOW);
+  }
+  Serial.println(reading);
 }

@@ -29,6 +29,7 @@ import ThermistorDemo2 from './components/lessons/thermistor/Demo2';
 import StrainDemo2 from './components/lessons/strain/Demo2';
 import StrainAdvancedLessonPlan from './components/lessons/strain/StrainAdvanced';
 import PhotocellDemo2 from './components/lessons/photocell/Demo2';
+import MicAdvDemo2 from './components/lessons/microphone/Demo2Adv';
 
 function App() {
   return (
@@ -99,6 +100,7 @@ function App() {
         <Route path='/mic/timedomain' element={<TimeDomain />} />
         <Route path='/mic/freqdomain' element={<FreqDomain />} />
         <Route path='/mic/effectsdemo' element={<EffectsDemo />} />
+        <Route path='/mic/demoAdv2' element={<MicAdvDemo2 />} />
 
         <Route path='/motion/demo1' element={<PIRDemo1/>} />
 

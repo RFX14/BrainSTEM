@@ -57,7 +57,7 @@ const EffectsDemo = () => {
     return (
         <div>
             <div className='container2'>
-                <p>Record some audio, after selecting what effects to apply! Notice how bitrate effects audio quality! And play around with some pitch shifting!</p>
+                <p>Record some audio using your computer's microphone, after selecting what effects to apply! Notice how bitrate effects audio quality! And play around with some pitch shifting!</p>
             </div>
 
             <div className='container2'>

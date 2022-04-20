@@ -1,13 +1,13 @@
 import '../../lib/dropdownStyles.css';
-import SerialPlot from "../../SerialPlot";
 import '../../../App.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Slider from '@material-ui/core/Slider'
+import Button from '../../Button';
 
 const { ipcRenderer } = window.require('electron');
 
-var sensorAndSensitivy = ':' // Decimal 58
-const PhotocellDemo2 = () => {
+var sensorAndSensitivy = '>' // Decimal 62
+const MicAdvDemo2 = () => {
     const [sensi, changeSensi] = useState(1); // Just used to update the view, not actually store data
 
     setInterval(sendData, 500);
@@ -18,15 +18,15 @@ const PhotocellDemo2 = () => {
     }
 
     function updateSensiStuff(data) {
-        sensorAndSensitivy = String.fromCharCode(58); // Min value is 58
+        sensorAndSensitivy = String.fromCharCode(62); // Min value is 62
         if (data === 2) {
-            sensorAndSensitivy = String.fromCharCode(58);
+            sensorAndSensitivy = String.fromCharCode(62);
         } else if (data === 3) {
-            sensorAndSensitivy = String.fromCharCode(59);
+            sensorAndSensitivy = String.fromCharCode(63);
         } else if (data === 4) {
-            sensorAndSensitivy = String.fromCharCode(60);
+            sensorAndSensitivy = String.fromCharCode(64);
         } else {
-            sensorAndSensitivy = String.fromCharCode(61);
+            sensorAndSensitivy = String.fromCharCode(65);
         }
         changeSensi(data);
     }
@@ -40,7 +40,7 @@ const PhotocellDemo2 = () => {
                 <br />
                 <br />
 
-                <h3>Photocell Sensitivity (Minimum Required Voltage to keep LED on)</h3>
+                <h3>Microphone Sensitivity (Minimum Required Voltage to keep LED on)</h3>
                 <Slider
                 aria-label="sensitivity"
                 value={sensi}
@@ -51,9 +51,15 @@ const PhotocellDemo2 = () => {
                 min={2}
                 max={5}
                 />
+                
+                <br />
+                <br />
+
+                <Button text='DEMO 2' link='/mic/effectsdemo' />
             </div>
+
         </div>
     );
 }
 
-export default PhotocellDemo2
+export default MicAdvDemo2

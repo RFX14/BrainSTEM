@@ -3,16 +3,12 @@ import SerialPlot from "../../SerialPlot";
 import '../../../App.css';
 
 const PhotocellDemo1 = () => {
-    // ! UPDATE with proper conversions
     function getVoltage(adcValue) {
-        const RESISTOR = 5000; 
-        const resistorValue = RESISTOR / (1023.0 / adcValue - 1.0);
-        const voltage = .0005 * resistorValue;
-
+        const voltage = (5/1024) * adcValue;
         return voltage;
     }
 
-    // ! UPDATE with proper conversions
+    // ! NOT USED
     function getConverted(adcValue) {
         const voltage = getVoltage(adcValue);
         const converted = -1.67e-3 * voltage + 42;
