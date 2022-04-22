@@ -79,7 +79,7 @@ var port = new SerialPort('/dev/tty.usbserial-AB0LR1PF', {
   flowControl: false
 });
 */
-var port = new SerialPort('/dev/tty.usbmodem00077330501', {
+var port = new SerialPort('/dev/tty.usbmodem00077337811', {
   baudRate: 115200,
   flowControl: false
 });

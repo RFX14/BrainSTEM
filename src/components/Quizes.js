@@ -1,3 +1,20 @@
+import image1 from '../components/QuizPhotos/img1.png';
+import image2 from '../components/QuizPhotos/img2.jpg';
+import image3 from '../components/QuizPhotos/img3.jpg';
+import image4 from '../components/QuizPhotos/img4.png';
+import image5 from '../components/QuizPhotos/img5.png';
+import image6 from '../components/QuizPhotos/img6.png';
+import image7 from '../components/QuizPhotos/img7.png';
+import image8 from '../components/QuizPhotos/img8.png';
+import image9 from '../components/QuizPhotos/img9.png';
+import image10 from '../components/QuizPhotos/img10.png';
+import image11 from '../components/QuizPhotos/img11.png';
+import image12 from '../components/QuizPhotos/img12.png';
+import image13 from '../components/QuizPhotos/img13.png';
+import image14 from '../components/QuizPhotos/img14.png';
+import image15 from '../components/QuizPhotos/img15.png';
+
+
 const testQuiz = {
     "quizTitle": "Quiz Testing",
     "quizSynopsis": "This is simply a test of the quiz componenet",
@@ -223,4 +240,56 @@ const pirB = {
   ]
 }
 
-export {testQuiz, thermB, photoB, strainB, microB, pirB}
+const thermA = {
+  "quizTitle": "Advanced Thermistor Assessment",
+  "questions": [
+    {
+      "question": "Identify the Series Circuit",
+      "questionType": "photo",
+      "answers": [
+        image1,
+        image2,
+        image3
+      ],
+      "correctAnswer": "2",
+      "point": "1"
+    },
+    {
+      "question": "Identify the parallel circuit",
+      "questionType": "photo",
+      "answers": [
+        image3,
+        image2,
+        image1
+      ],
+      "correctAnswer": "1",
+      "point": "1"
+    },
+    {
+      "question": "The equation to obtain temperature (°C) from voltage for a certain linearized thermistor is -6.56*Voltage + 44.5. If the voltage reading is 5 V, then what is the temperature in Celsius?",
+      "questionType": "text",
+      "answers": [
+        "7 °C",
+        "11 °C",
+        "11.7 °C",
+        "7.7 °C"
+      ],
+      "correctAnswer": "3",
+      "point": "1"
+    },
+    {
+      "question": "What is 25 degrees Celsius in Fahrenheit? Note: °F = (°C * 9/5) + 32",
+      "questionType": "text",
+      "answers": [
+        "77 °F",
+        "854 °F",
+        "102.6 °F",
+        "45.8 °F"
+      ],
+      "correctAnswer": "1",
+      "point": "1"
+    }
+  ]
+}
+
+export {testQuiz, thermB, photoB, strainB, microB, pirB, thermA}

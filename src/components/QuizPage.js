@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import Quiz from "./lib/Quiz"
-import {  testQuiz, thermB, photoB, strainB, microB, pirB } from "./Quizes"
+import {  testQuiz, thermB, photoB, strainB, microB, pirB, thermA } from "./Quizes"
 
 const QuizPage = ({quizName}) => {
     const [quizResult, setQuizResult] = useState()
@@ -20,6 +20,9 @@ const QuizPage = ({quizName}) => {
             break;
         case 'pirB':
             currentQuiz = pirB
+            break;
+        case 'thermA':
+            currentQuiz = thermA
             break;
         default:
             currentQuiz = testQuiz

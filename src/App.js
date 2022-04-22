@@ -62,7 +62,7 @@ function App() {
         <Route path='/testmic' element={<TestMic />}/>
 
         {/* Sensor Page Links */}
-        <Route path='/thermistor' element={<SensorHome title='Thermistor' quizLink='/thermistor/quizB' beginnerLink='/thermistor/blesson' advancedLink='/thermistor/alesson'/>} />
+        <Route path='/thermistor' element={<SensorHome title='Thermistor' quizLink='/thermistor/quizB' quizLinkA='/thermistor/quizA' beginnerLink='/thermistor/blesson' advancedLink='/thermistor/alesson'/>} />
         <Route path='/microphone' element={<SensorHome title='Microphone' quizLink='/microphone/quizB' beginnerLink='/microphone/blesson' advancedLink='/microphone/alesson'/>} />
         <Route path='/motion' element={<SensorHome title='Motion Sensor' quizLink='/motion/quizB' beginnerLink='/motion/blesson' advancedLink='/motion/alesson'/>} />
         <Route path='/strain' element={<SensorHome title='Strain Gauge' quizLink='/strain/quizB' beginnerLink='/strain/blesson' advancedLink='/strain/alesson'/>} />
@@ -70,9 +70,14 @@ function App() {
 
         {/* Assesment Quiz Links */}
         <Route path='/thermistor/quizB' element={<QuizPage quizName='thermB' />} />
+        <Route path='/thermistor/quizA' element={<QuizPage quizName='thermA' />} />
+
         <Route path='/microphone/quizB' element={<QuizPage quizName='microB' />} />
+
         <Route path='/motion/quizB' element={<QuizPage quizName='pirB' />} />
+
         <Route path='/strain/quizB' element={<QuizPage quizName='strainB' />} />
+
         <Route path='/photocell/quizB' element={<QuizPage quizName='photoB' />} />
         
 
