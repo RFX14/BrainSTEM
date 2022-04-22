@@ -30,6 +30,7 @@ import StrainDemo2 from './components/lessons/strain/Demo2';
 import StrainAdvancedLessonPlan from './components/lessons/strain/StrainAdvanced';
 import PhotocellDemo2 from './components/lessons/photocell/Demo2';
 import MicAdvDemo2 from './components/lessons/microphone/Demo2Adv';
+import PIRDemo2 from './components/lessons/pir/Demo2';
 
 function App() {
   return (
@@ -103,6 +104,7 @@ function App() {
         <Route path='/mic/demoAdv2' element={<MicAdvDemo2 />} />
 
         <Route path='/motion/demo1' element={<PIRDemo1/>} />
+        <Route path='/motion/demo2' element={<PIRDemo2 />} />
 
         <Route path='/strain/demo1' element={<StrainDemo1/>} />
         <Route path='/strain/demo2' element={<StrainDemo2 />} />

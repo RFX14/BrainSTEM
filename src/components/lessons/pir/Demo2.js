@@ -1,10 +1,11 @@
 import '../../lib/dropdownStyles.css';
 import { useState } from 'react';
 import '../../../App.css';
+import image1 from '../pir/images/advPhoto.jpg';
 
 const { ipcRenderer } = window.require('electron');
 
-const PIRDemo1 = () => {
+const PIRDemo2 = () => {
     const sensor = '3';
     const [measurement, setMeasurement] = useState(0.0);
     setInterval(getNewData, 500);
@@ -15,9 +16,10 @@ const PIRDemo1 = () => {
     }
     return (
         <div className='container2'>
-            <p>Notice how the LED on the board lights up whenever the PIR detects motion.</p>
+            <p>Using the image below as reference play with the different dials, and notice how it affects when the LED will light up!</p>
+            <img src={image1} width='500' />
         </div>
     );
 }
 
-export default PIRDemo1
+export default PIRDemo2
