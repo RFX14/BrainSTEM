@@ -5,6 +5,7 @@ HX711 scale;
 #define THERMO_PIN A1
 #define PHOTO_PIN A0
 #define MIC_PIN A2
+#define STAIN2_PIN A5
 
 /* Strain Gauge Pins */
 #define DOUT 10
@@ -14,7 +15,7 @@ HX711 scale;
 #define MOTION_PIN 9
 #define LED_PIN 6
 
-const char TEST = '0', THERMO = '1', STRAIN = '2', MOTION = '3', PHOTO = '4', MIC = '5', PHOTO2 = '6';
+const char TEST = '0', THERMO = '1', STRAIN = '2', MOTION = '3', PHOTO = '4', MIC = '5', PHOTO2 = '6', STRAIN2 = 'B';
 
 void readMain();
 void readThermo();
@@ -24,6 +25,7 @@ void readPhoto();
 void readMic();
 void readPhoto2();
 void readMic2();
+void readStrain2();
 
 bool isFirst = true;
 char incomingByte = '!';
@@ -63,6 +65,11 @@ void loop() {
   } else if (incomingByte >= 62 && incomingByte <= 65) {
     isFirst = true;
     readMic2();
+  } else if (incomingByte == STRAIN2) {
+    isFirst = true;
+    readStrain2();
+  }else {
+    isFirst = true;
   }
 }
 
@@ -115,7 +122,7 @@ bool LED_STATUS = false;
 void readMic() {
   pinMode(MIC_PIN, INPUT);
   int micVal = analogRead(MIC_PIN);
-  if(micVal > 600) {
+  if(micVal > 500) {
     LED_STATUS = !LED_STATUS;
     digitalWrite(LED_PIN, LED_STATUS);
   }
@@ -175,5 +182,10 @@ void readMic2() {
   } else {
     digitalWrite(LED_PIN, LOW);
   }
+  Serial.println(reading);
+}
+
+void readStrain2() {
+  int reading = analogRead(STAIN2_PIN);
   Serial.println(reading);
 }

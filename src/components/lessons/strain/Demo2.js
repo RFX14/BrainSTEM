@@ -7,7 +7,7 @@ const { ipcRenderer } = window.require('electron');
 
 // ! Insert photo showing how to build circuit
 const StrainDemo2 = () => {
-    const sensor = '2';
+    const sensor = 'B';
     const [measurement, setMeasurement] = useState(0.0);
     setInterval(getNewData, 500);
 
@@ -24,8 +24,8 @@ const StrainDemo2 = () => {
             </div>
             
             <div className='container2'>
-                <h2>Measurment:</h2>
-                <h3>{measurement} lbs</h3>
+                <h2>Raw ADC Measurment:</h2>
+                <h3>{measurement}</h3>
             </div>
         </div>
     );
