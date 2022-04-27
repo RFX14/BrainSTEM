@@ -292,4 +292,141 @@ const thermA = {
   ]
 }
 
-export {testQuiz, thermB, photoB, strainB, microB, pirB, thermA}
+const photoA = {
+  "quizTitle": "Advanced Photocell Assessment",
+  "questions": [
+    {
+      "question": "Is the following application an analog or digital one? Using a photocell to increase or decrease the brightness of a light based on how bright it is ouot. For example, as the sun is setting the bulb becomes brighter the darker it gets outside.",
+      "questionType": "text",
+      "answers": [
+        "Analog",
+        "Digital"
+      ],
+      "correctAnswer": "1",
+      "point": "1"
+    },
+    {
+      "question": "Is the following application an analog or digital one? Using a photocell to make an alarm go off when the lights are turned on in a certain room.",
+      "questionType": "text",
+      "answers": [
+        "Analog",
+        "Digital"
+      ],
+      "correctAnswer": "2",
+      "point": "1"
+    },
+    {
+      "question": "As the brightness of a light on the photocell increases the resistance:",
+      "questionType": "text",
+      "answers": [
+        "Decreases",
+        "Increases",
+        "Stays the same",
+        "Depends on the type of photocell"
+      ],
+      "correctAnswer": "4",
+      "point": "1"
+    }
+  ]
+}
+
+const strainA = {
+  "quizTitle": "Strain Gauge Advanced Assesment",
+  "questions": [
+    {
+      "question": "Knowing that the wheatstone is balanced, find the value of the unknown resistor R3 given that R1 = 1000, R2 = 1500, R4 = 2000.",
+      "questionType": "text",
+      "questionPic": image4,
+      "answers": [
+        "750",
+        "3000",
+        "13333.33",
+        "0.00033"
+      ],
+      "correctAnswer": "3",
+      "point": "1"
+    },
+    {
+      "question": "The wheatstone bridge acts as a(n)",
+      "questionType": "text",
+      "answers": [
+        "Bridge to connect two different circuits together",
+        "Homage to Dr.Wheatstone",
+        "Amplifier of sorts",
+        "Useless addition to the ciruit to drive up prices"
+      ],
+      "correctAnswer": "3",
+      "point": "1"
+    },
+    {
+      "question": "Identify the wheatstone bridge(s)",
+      "questionType": "photo",
+      "answerSelectionType": "multiple",
+      "answers": [
+        image5,
+        image6,
+        image7,
+        image8
+      ],
+      "correctAnswer": [1, 2, 3, 4],
+      "point": "1"
+    }
+  ]
+}
+
+const microA = {
+  "quizTitle": "Microphone Advanced Assesment",
+  "questions": [
+    {
+      "question": "Identify which voice belongs to the child in the graph below with amplitude on the y-axis and frequency on the x-axis",
+      "questionType": "text",
+      "questionPic": image9,
+      "answers": [
+        "Red: Child, Blue: Adult",
+        "Red: Adult, Blue: Child"
+      ],
+      "correctAnswer": "2",
+      "point": "1"
+    },
+    {
+      "question": "In the images below, which graph corresponds to a loud noise? (Y-Axis: Amplitude, X-Axis: Frequency)",
+      "questionType": "photo",
+      "answers": [
+        image10,
+        image11
+      ],
+      "correctAnswer": "1",
+      "point": "1"
+    }
+  ]
+}
+
+const pirA = {
+  "quizTitle": "Advanced PIR Assesment",
+  "questions": [
+    {
+      "question": "Which PIR sensor will have the best coverage?",
+      "questionType": "text",
+      "answers": [
+        "The PIR sensor with 2 Pyroelectric Sensors",
+        "The PIR sensor with 1 Pyroelectric Sensor",
+        "The PIR sensor with 8 Pyroelectric Sensors",
+        "The PIR sensor with 4 Pyroelectric Sensors"
+      ],
+      "correctAnswer": "3"
+    },
+    {
+      "question": "Which lens covers the longest distance?",
+      "questionType": "photo",
+      "answers": [
+        image12,
+        image13,
+        image14,
+        image15
+      ],
+      "correctAnswer": "3"
+    }
+  ]
+}
+
+export {testQuiz, thermB, photoB, strainB, microB, pirB, thermA, photoA, strainA, microA, pirA}

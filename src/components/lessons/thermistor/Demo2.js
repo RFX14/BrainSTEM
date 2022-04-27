@@ -4,8 +4,6 @@ import { useState, useEffect } from 'react';
 import '../../../App.css';
 
 const { ipcRenderer } = window.require('electron');
-var me = 0;
-var re = 0;
 const ThermistorDemo2 = () => {
     const sensor = '1';
     const [measurement, setMeasurement] = useState(0.0);

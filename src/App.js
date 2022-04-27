@@ -63,22 +63,27 @@ function App() {
 
         {/* Sensor Page Links */}
         <Route path='/thermistor' element={<SensorHome title='Thermistor' quizLink='/thermistor/quizB' quizLinkA='/thermistor/quizA' beginnerLink='/thermistor/blesson' advancedLink='/thermistor/alesson'/>} />
-        <Route path='/microphone' element={<SensorHome title='Microphone' quizLink='/microphone/quizB' beginnerLink='/microphone/blesson' advancedLink='/microphone/alesson'/>} />
-        <Route path='/motion' element={<SensorHome title='Motion Sensor' quizLink='/motion/quizB' beginnerLink='/motion/blesson' advancedLink='/motion/alesson'/>} />
-        <Route path='/strain' element={<SensorHome title='Strain Gauge' quizLink='/strain/quizB' beginnerLink='/strain/blesson' advancedLink='/strain/alesson'/>} />
-        <Route path='/light' element={<SensorHome title='Light Sensor' quizLink='/photocell/quizB' beginnerLink='/photocell/blesson' advancedLink='/photocell/alesson'/>} />
+        <Route path='/microphone' element={<SensorHome title='Microphone' quizLink='/microphone/quizB' quizLinkA='/microphone/quizA' beginnerLink='/microphone/blesson' advancedLink='/microphone/alesson'/>} />
+        <Route path='/motion' element={<SensorHome title='Motion Sensor' quizLink='/motion/quizB' quizLinkA='/motion/quizA' beginnerLink='/motion/blesson' advancedLink='/motion/alesson'/>} />
+        <Route path='/strain' element={<SensorHome title='Strain Gauge' quizLink='/strain/quizB' quizLinkA='/strain/quizA' beginnerLink='/strain/blesson' advancedLink='/strain/alesson'/>} />
+        <Route path='/light' element={<SensorHome title='Light Sensor' quizLink='/photocell/quizB' quizLinkA='/photocell/quizA' beginnerLink='/photocell/blesson' advancedLink='/photocell/alesson'/>} />
+
 
         {/* Assesment Quiz Links */}
         <Route path='/thermistor/quizB' element={<QuizPage quizName='thermB' />} />
         <Route path='/thermistor/quizA' element={<QuizPage quizName='thermA' />} />
 
         <Route path='/microphone/quizB' element={<QuizPage quizName='microB' />} />
+        <Route path='/microphone/quizA' element={<QuizPage quizName='microA' />} />
 
         <Route path='/motion/quizB' element={<QuizPage quizName='pirB' />} />
+        <Route path='/motion/quizA' element={<QuizPage quizName='pirA' />} />
 
         <Route path='/strain/quizB' element={<QuizPage quizName='strainB' />} />
+        <Route path='/strain/quizA' element={<QuizPage quizName='strainA' />} />
 
         <Route path='/photocell/quizB' element={<QuizPage quizName='photoB' />} />
+        <Route path='/photocell/quizA' element={<QuizPage quizName='photoA' />} />
         
 
         {/* Lesson Plan Links */}
