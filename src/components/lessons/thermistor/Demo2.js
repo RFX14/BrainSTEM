@@ -12,7 +12,7 @@ const ThermistorDemo2 = () => {
 
     //! Using Linear Approx. as the real is too slow
     function getConverted() {
-        const RESISTOR = 10000;
+        const RESISTOR = 100;
         const adcValue = ipcRenderer.sendSync('readData', sensor);
         const resistorValue = RESISTOR / (1023.0 / adcValue - 1.0);
         console.log(resistorValue)
