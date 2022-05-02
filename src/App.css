@@ -20,6 +20,15 @@ body {
   border-radius: 5px;
 }
 
+.container3 {
+  max-width: 770px;
+  margin: 10px 50px -50px 45px;
+  overflow: auto;
+  min-height: 50px;
+  padding: 30px;
+  border-radius: 5px;
+}
+
 .header {
   display: flex;
   justify-content: space-between;

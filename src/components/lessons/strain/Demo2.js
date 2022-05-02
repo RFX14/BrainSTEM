@@ -2,6 +2,7 @@ import '../../lib/dropdownStyles.css';
 import SerialPlot from "../../SerialPlot";
 import { useState, useEffect } from 'react';
 import '../../../App.css';
+import img from '../strain/strainCircuit.PNG';
 
 const { ipcRenderer } = window.require('electron');
 
@@ -21,6 +22,11 @@ const StrainDemo2 = () => {
             <div className='container2'>
                 <p>Try creating your own strain gauge using the image provided!</p>
                 <p>Once you've finished hook it up and see if you can get a measurement!</p>
+                <br />
+                <p>Dark Green Wire & Light Green Wire: Strain Gauge Input</p>
+                <p>Blue Wire: Strain Gauge Output (Connect to top most analog port)</p>
+                <br />
+                <img src={img} width='500' />
             </div>
             
             <div className='container2'>
