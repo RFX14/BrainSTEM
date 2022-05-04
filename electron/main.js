@@ -22,7 +22,7 @@ function createWindow () {
   win.loadURL('http://localhost:3000');
 
   // Open the DevTools.
-  win.webContents.openDevTools();
+  //win.webContents.openDevTools();
 }
 
 // This method will be called when Electron has finished
@@ -72,21 +72,16 @@ ipcMain.on('updateMode', (event, args) => {
   currentMode = args;
 });
 
-//Sets up serial port (work in progress)
-/*
-var port = new SerialPort('/dev/tty.usbserial-AB0LR1PF', {
-  baudRate: 9600,
-  flowControl: false
-});
-*/
+// Fancy One
 var port = new SerialPort('/dev/tty.usbmodem00077337811', {
   baudRate: 115200,
   flowControl: false
 });
 
+// Jank One
 /*
-var port = new SerialPort('/dev/tty.usbmodem14401', {
-  baudRate: 9600,
+var port = new SerialPort('/dev/tty.usbmodem00077330501', {
+  baudRate: 115200,
   flowControl: false
 });
 */
