@@ -73,18 +73,20 @@ ipcMain.on('updateMode', (event, args) => {
 });
 
 // Fancy One
+/*
 var port = new SerialPort('/dev/tty.usbmodem00077337811', {
   baudRate: 115200,
   flowControl: false
 });
+*/
 
 // Jank One
-/*
+
 var port = new SerialPort('/dev/tty.usbmodem00077330501', {
   baudRate: 115200,
   flowControl: false
 });
-*/
+
 
 const parser = port.pipe(new Readline({ Delimiter: '\r\n' }))
 

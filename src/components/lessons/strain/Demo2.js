@@ -44,7 +44,7 @@ const StrainDemo2 = () => {
             
             <div className='container2'>
                 <h2>Raw ADC Measurment: {measurement}</h2>
-                <h2>Voltage: {voltage}V</h2>
+                <h2>Voltage: {Math.round((voltage + Number.EPSILON) * 100) / 100}V</h2>
             </div>
         </div>
     );
