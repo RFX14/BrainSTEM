@@ -44,7 +44,7 @@ const StrainDemo2 = () => {
             
             <div className='container2'>
                 <h2>Raw ADC Measurment: {measurement}</h2>
-                <h2>Voltage: {voltage}</h2>
+                <h2>Voltage: {voltage}V</h2>
             </div>
         </div>
     );
