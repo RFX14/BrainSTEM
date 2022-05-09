@@ -67,6 +67,11 @@ const MicrophoneLessonPlan = () => {
             <br/>
 
             <p>Each time we speak into the microphone, we are sending sound waves to the tiny capacitor inside. Each sound wave moves the plates around, changing the distance between them. As the plate distances change, the voltages sent to the computer also change because the plates are moving around! This continuous change in voltage is then converted to sound on our computers.</p>
+
+            <br/>
+            <br/>
+
+            <Button text='DEMO' link='/mic/demo1' />
         </div>
     );
 }

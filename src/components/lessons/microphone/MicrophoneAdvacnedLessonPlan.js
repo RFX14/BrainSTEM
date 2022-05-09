@@ -46,7 +46,7 @@ const MicrophoneAdvancedLessonPlan = () => {
             <br />
             <br />
 
-            <Button text='DEMO' link='/microphone/demo2' />
+            <Button text='DEMO' link='/mic/demoAdv2' />
     </div>
     );
 }

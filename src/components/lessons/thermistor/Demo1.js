@@ -2,10 +2,11 @@ import '../../lib/dropdownStyles.css';
 import SerialPlot from "../../SerialPlot";
 import '../../../App.css';
 
+// ! Make sure PCB uses my way of setup
 const ThermistorDemo1 = () => {
     function getVoltage(adcValue) {
         const RESISTOR = 10000;
-        const resistorValue = RESISTOR / (1023.0 / adcValue - 1.0);
+        const resistorValue = RESISTOR / (1023.0 / adcValue);
         const voltage = (.00025 * resistorValue) % 5;
 
         return voltage;
@@ -14,8 +15,8 @@ const ThermistorDemo1 = () => {
     //! Using Linear Approx. as the real is too slow
     function getConverted(adcValue) {
         const RESISTOR = 10000;
-        const resistorValue = RESISTOR / (1023.0 / adcValue - 1.0);
-        console.log(resistorValue)
+        const resistorValue = RESISTOR / (1023.0 / adcValue);
+        console.log(resistorValue);
         /*
         const convertedCelsius = 77.6 - (22.7 * Math.log(resistorValue / 1000));
         const converted = (convertedCelsius * (9/5)) + 32; 

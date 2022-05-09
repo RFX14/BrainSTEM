@@ -1,3 +1,4 @@
+import Button from '../../Button';
 import './../../../App.css';
 import image1 from './../photocell/images/image1.png';
 import image2 from './../photocell/images/image2.png';
@@ -14,7 +15,7 @@ const PhotocellAdvancedLessonPlan = () => {
 
             <img src={image1} width='500'/>
 
-            <p>As the light intensity increases, the resistance decreases. You can see this for yourself by doing the live demo below!</p>
+            <p>As the light intensity increases, the resistance decreases.</p>
 
             <br/>
 
@@ -35,6 +36,11 @@ const PhotocellAdvancedLessonPlan = () => {
                     <li>There are two parts to this. One side of the burglar alarm is casting a beam of light (infrared) in a straight line. When the light is blocked by something (like a burglar) the alarm is tripped because the voltage drops very quickly (because light intensity drops to 0)</li>
                 </ul>
             </ul>
+
+            <br />
+            <br />
+
+            <Button text='DEMO' link='/photocell/demo2' />
         </div>
     );
 }
