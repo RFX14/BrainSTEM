@@ -11,10 +11,14 @@ const { ipcRenderer } = window.require('electron');
 const StrainDemo2 = () => {
     const sensor = 'B';
     const [measurement, setMeasurement] = useState(0.0);
+    const [voltage, setVolts] = useState(0);
     setInterval(getNewData, 500);
 
     function getNewData() {
-        setMeasurement(ipcRenderer.sendSync('readData', sensor));
+        const newData = ipcRenderer.sendSync('readData', sensor)
+        setMeasurement(newData);
+        const volts = (5/1024) * newData;
+        setVolts(volts);
         console.log(measurement);
     }
 
@@ -39,8 +43,8 @@ const StrainDemo2 = () => {
             </div>
             
             <div className='container2'>
-                <h2>Raw ADC Measurment:</h2>
-                <h3>{measurement}</h3>
+                <h2>Raw ADC Measurment: {measurement}</h2>
+                <h2>Voltage: {voltage}</h2>
             </div>
         </div>
     );
